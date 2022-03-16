@@ -9,3 +9,76 @@ body {
 ion-icon{
   font-size: 35px;
 }
+.carousel-indicators > button {
+  width: 1.5rem;
+  /* height: 1rem; */
+  /* border-radius: 50%; */
+  margin: 5px;
+}
+.detail-container{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.detail-image-container{
+  width: 30%;
+  min-width: 200px;
+  overflow: hidden;
+  margin: 5vw 0;
+  position: relative;
+  transition: all .4s ease;
+  box-shadow: 0 3px 10px rgb(0 0 0 /.2);
+}
+
+.detail-image-container>img{
+  width: 100%;
+}
+.detail-image-container:hover{
+  transform: scale(1.1);
+}
+.overlay{
+position: absolute;
+top:0;
+width: 100%;
+height: 100%;
+background: rgb(255 255 255/.5);
+display: flex;
+justify-content: center;
+align-items: center;
+opacity: 0;
+transition: all .5s ease;
+}
+.overlay:hover{
+  opacity: 1;
+  transform: scale(1.3);
+}
+.overlay > p {
+ font-size: 5vw;
+ font-family: 'Nanum Myeongjo', serif;
+ color: white;
+ font-weight: bold;
+}
+.shipping-section{
+  width: 100vw;
+  /* height: 15vh; */
+  background-color: rgb(237, 234, 230);
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 5vh;
+  flex-wrap: wrap;
+}
+.info-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2vh 1vw 1vh 2vw;
+}
+.info-container>p{
+  font-weight: bold;
+  margin-top: 1vh;
+  text-align: center;
+  padding: 2px 5px;
+}
