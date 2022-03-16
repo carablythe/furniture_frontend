@@ -11,7 +11,7 @@ import {
     NavbarHamburger,
     NavbarLinkExtend
 } from './Navbar.style.js'
-import Logo from '../images/logo/Cozy.png'
+import Logo from '../images/Cozy.png'
 
 const Navbar = () => {
     const [extendNav, setExtendNav] = useState(false)
