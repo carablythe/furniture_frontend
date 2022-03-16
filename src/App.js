@@ -5,7 +5,6 @@ import Navbar from './components/Navbar'
 const App = () => {
   return (
     <>
-    <h1> TESTING AUTO DEPLOY TO HEROKU</h1>
     <Router>
       <Navbar />
       <Routes>
