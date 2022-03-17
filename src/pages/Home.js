@@ -37,7 +37,7 @@ const HomePage = () => {
         <div className='detail-image-container'>
             <img src={detailOne}/>
             <div className='overlay'>
-            <p>Couch</p>
+            <p>Couches</p>
             </div>
         </div>
         <div className='detail-image-container'>
@@ -71,7 +71,7 @@ const HomePage = () => {
             <p>Customer Online Support</p>
         </div>
     </div>
-        
+
 </>
 
  )

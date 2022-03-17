@@ -1,13 +1,13 @@
 import {useState} from 'react'
 import {
-    NavbarContainer, 
-    LeftContainer, 
-    RightContainer, 
-    NavbarInnerContainer, 
-    NavbarExtendedContainer, 
-    NavbarLinkContainer, 
-    NavbarLink, 
-    NavbarLogo, 
+    NavbarContainer,
+    LeftContainer,
+    RightContainer,
+    NavbarInnerContainer,
+    NavbarExtendedContainer,
+    NavbarLinkContainer,
+    NavbarLink,
+    NavbarLogo,
     NavbarHamburger,
     NavbarLinkExtend
 } from './Navbar.style.js'
@@ -29,7 +29,7 @@ const Navbar = () => {
                     <RightContainer>
                         <NavbarLink to="/">Home</NavbarLink>
                         <NavbarLink to="/">About</NavbarLink>
-                        <NavbarLink to="/">Products</NavbarLink>
+                        <NavbarLink to="/products">Products</NavbarLink>
                         <NavbarLink to="/">Contact</NavbarLink>
                         <NavbarLink to="/cart"><ion-icon name="cart-outline"></ion-icon></NavbarLink>
                         <NavbarHamburger onClick={() => {setExtendNav((curr) => !curr)}}> {extendNav ? <> &#10005; </> : <> &#8801; </>} </NavbarHamburger>
@@ -39,13 +39,13 @@ const Navbar = () => {
                 <NavbarExtendedContainer>
                         <NavbarLinkExtend to="/">Home</NavbarLinkExtend>
                         <NavbarLinkExtend to="/">About</NavbarLinkExtend>
-                        <NavbarLinkExtend to="/">Products</NavbarLinkExtend>
+                        <NavbarLinkExtend to="/products">Products</NavbarLinkExtend>
                         <NavbarLinkExtend to="/">Contact</NavbarLinkExtend>
                         <NavbarLinkExtend to="/cart"><ion-icon name="cart-outline"></ion-icon></NavbarLinkExtend>
                 </NavbarExtendedContainer> : ''
                 }
             </NavbarContainer>
-            
+
         </>
     )
 }
