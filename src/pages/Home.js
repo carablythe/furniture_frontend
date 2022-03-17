@@ -7,17 +7,21 @@ import thirdSlide from '../images/slide3.jpg'
 import detailOne from '../images/black-couch.jpg'
 import detailTwo from '../images/kitchen-table.jpg'
 import detailThree from '../images/brown-leather-chair.jpg'
-import { Truck, Flower1, Telephone, Globe } from 'react-bootstrap-icons'
+import emailSec from '../images/extra3.jpg'
+import contact from '../images/contact1.jpg'
+import { Truck, Flower1, Telephone, Globe, Facebook, Linkedin, Twitter, Instagram } from 'react-bootstrap-icons'
 import axios from 'axios'
 const HomePage = () => {
-//     const [furniture, setFurniture] = useState([])
-// const getFurniture = () => {
-//     axios.get('http://furnituredjango.herokuapp.com/api/furnitures')
-//     .then((response)=>{
-//         console.log(response.data)
-//     })
-// }
-
+    const [trendingFurniture, setTrendingFurniture] = useState([])
+const getTrendingFurniture = () => {
+    axios.get('http://furnituredjango.herokuapp.com/api/furnitures')
+    .then((response)=>{
+        console.log(response.data)
+    })
+}
+useEffect(()=>{
+    getTrendingFurniture()
+})
 
     return(
  <>
@@ -92,9 +96,52 @@ const HomePage = () => {
             
         </div>
     </section>
-    <section>
-        
+    <section className='discount-section'>
+        <img src={emailSec}/>
+        <div className='deal-section'>
+            <p className='deal-title'>Get <span>$50</span> Discount On Your First Order!</p>
+            <p className='signup-info'>Sign up for your email offer.</p>
+            <div className='email-sign'>
+                <input type='text' placeholder='Email Address'/> 
+                <button>Send</button>
+            </div>
+        </div>
     </section>
+    <section className='contact-section'>
+        <div>
+            <img src={contact}/>
+        </div>
+        <div className='form-container'>
+            <form className='contact-form'>
+                <h4>Send Us an Email:</h4>
+                <input type='text' placeholder='Name'/>
+                <input type='email' placeholder='Email Address'/>
+                <input type='text' placeholder='Subject'/>
+                <textarea placeholder='Message..'></textarea>
+                <button className='submit'>Send</button>
+            </form>
+        </div>
+    </section>
+    <footer>
+        <div className='icons'>
+            <p><Facebook/></p>
+            <p><Twitter/></p>
+            <p><Linkedin/></p>
+            <p><Instagram/></p>
+        </div>
+        <div className='sec'>
+            <p>Privacy Policy</p>
+            <p>Terms/Conditions</p>
+            <p>Information</p>
+            <p>More Info</p>
+        </div>
+        <div className='sec'>
+            <p>Account</p>
+            <p>More Info</p>
+            <p>Shipping</p>
+            <p>Security</p>
+        </div>
+    </footer>
         
 </>
 

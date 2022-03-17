@@ -104,7 +104,139 @@ transition: all .5s ease;
   background:whitesmoke;
   padding: 0 20px;
 }
+.discount-section{
+  width: 100%;
+  background-color: grey;
+  position: relative;
+ margin: 2vh 0 10vh 0;
+}
+.discount-section > img{
+  width: 100%;
+}
+.deal-section{
+  position: absolute;
+  top: 5vw;
+  right: 10vw;
+  transition: all .2s ease;
+}
+.deal-title{
+  font-weight: bold;
+  font-size: 30px;
+}
+.deal-title > span{
+  color: white;
+  margin: 0;
+}
+.signup-info{
+  font-size: 22px;
+}
+.email-sign > input {
+  padding: 5px;
+  width: 18rem;
+  border: none;
+}
+.email-sign > button {
+  padding: 6px 55px;
+  margin-left: 10px;
+  border: none;
+  color:white;
+  background:  rgb(120, 87, 78);
 
+}
+.contact-section{
+  display: flex;
+}
+.contact-section > div {
+  width: 50%;
+
+}
+.contact-section > div > img {
+  width: 100%;
+}
+.form-container{
+  display: flex;
+}
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.contact-form > h4 {
+  margin-bottom: 4vh;
+  font-family: 'Nanum Myeongjo', serif;
+  font-size: 30px;
+}
+.contact-form > input, textarea{
+  width: 80%;
+  margin: 3vh auto;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid black;
+
+}
+.submit {
+  width: 10rem;
+  background: rgb(120, 87, 78);
+  border: none;
+  padding: 5px;
+  color: white;
+}
+footer{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 3vh;
+  box-shadow: 0 3px 10px rgb(100 100 100 / .2);
+}
+.icons > p {
+  cursor: pointer;
+  transition: all .3s ease;
+}
+.icons > p:hover{
+  transform: scale(1.2);
+}
+.sec > p {
+  font-size: 12px;
+  text-align: center;
+  color: grey;
+  cursor: pointer;
+}
+
+@media (max-width: 1000px) {
+  .deal-title{
+    font-weight: bold;
+    font-size: 20px;
+    margin:0;
+  }
+  .signup-info{
+    font-size: 13px;
+    margin: 0;
+  }
+  .email-sign > input {
+    width: 13rem;
+  }
+  .email-sign > button {
+    padding: 6px 35px;
+  }
+  .contact-form > input, textarea{
+    width: 90%;
+    margin: 1vh auto;
+  }
+  .submit {
+    width: 8rem;
+  }
+}
+@media (max-width: 750px) {
+  .contact-section{
+    flex-direction: column;
+  }
+  .contact-section > div {
+    width: 100%;
+    margin-bottom: 3vh;
+  }
+}
 @media (max-width: 650px) {
   .detail-container{
     flex-direction: column;
@@ -119,5 +251,27 @@ transition: all .5s ease;
   }
   .last{
     border-bottom: none;
+  }
+  .trending-title {
+    font-size: 2rem;
+  }
+  .deal-section{
+    top: 2vh;
+  }
+  .deal-title{
+    font-weight: bold;
+    font-size: 15px;
+    margin:0;
+  }
+  .signup-info{
+    font-size: 10px;
+    margin: 0;
+  }
+  .email-sign > input {
+    width: 11rem;
+    padding: 1px;
+  }
+  .email-sign > button {
+    padding: 1px 15px;
   }
 }
