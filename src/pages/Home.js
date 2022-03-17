@@ -9,14 +9,17 @@ import detailTwo from '../images/kitchen-table.jpg'
 import detailThree from '../images/brown-leather-chair.jpg'
 import emailSec from '../images/extra3.jpg'
 import contact from '../images/contact1.jpg'
-import { Truck, Flower1, Telephone, Globe, Facebook, Linkedin, Twitter, Instagram } from 'react-bootstrap-icons'
+import { Truck, Flower1, Telephone, Globe, Facebook, Linkedin, Twitter, Instagram, Check, Exclamation} from 'react-bootstrap-icons'
 import axios from 'axios'
+import photo from '../images/6-drawer-dresser.jpg'
+
 const HomePage = () => {
     const [trendingFurniture, setTrendingFurniture] = useState([])
+
 const getTrendingFurniture = () => {
     axios.get('http://furnituredjango.herokuapp.com/api/furnitures')
     .then((response)=>{
-        console.log(response.data)
+        setTrendingFurniture(response.data)
     })
 }
 useEffect(()=>{
@@ -93,7 +96,25 @@ useEffect(()=>{
         <h2 className='trending-title'><span>Trending Products</span></h2>
     <section className='main-container'>
         <div className='trending-container'>
-            
+        {trendingFurniture.slice(0,6).map((item)=>{
+            return(
+                <div key={item.id} className='container'>
+                    <p>{item.name}</p>
+                    <div className='image-container'>
+                    <img src={photo}/>
+                    </div>
+                    <div className='contents'>
+                        <p className='price'><b>${item.price}</b></p>
+                        <p>Color: {item.color}</p>
+                        <p className='stock'> {item.availability ? 'In Stock'  : 'Out of Stock'} {item.availability ? <Check /> : <Exclamation/>}</p>
+                    </div>
+                </div>
+            )
+        })}
+
+
+
+
         </div>
     </section>
     <section className='discount-section'>
