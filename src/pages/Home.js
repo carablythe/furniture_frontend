@@ -123,7 +123,7 @@ useEffect(()=>{
             <p className='deal-title'>Get <span>$50</span> Discount On Your First Order!</p>
             <p className='signup-info'>Sign up for your email offer.</p>
             <div className='email-sign'>
-                <input type='text' placeholder='Email Address'/> 
+                <input type='text' placeholder='Email Address'/>
                 <button>Send</button>
             </div>
         </div>
@@ -163,7 +163,7 @@ useEffect(()=>{
             <p>Security</p>
         </div>
     </footer>
-        
+
 </>
 
  )
