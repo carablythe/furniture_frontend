@@ -7,17 +7,24 @@ import thirdSlide from '../images/slide3.jpg'
 import detailOne from '../images/black-couch.jpg'
 import detailTwo from '../images/kitchen-table.jpg'
 import detailThree from '../images/brown-leather-chair.jpg'
-import { Truck, Flower1, Telephone, Globe } from 'react-bootstrap-icons'
+import emailSec from '../images/extra3.jpg'
+import contact from '../images/contact1.jpg'
+import { Truck, Flower1, Telephone, Globe, Facebook, Linkedin, Twitter, Instagram, Check, Exclamation} from 'react-bootstrap-icons'
 import axios from 'axios'
-const HomePage = () => {
-//     const [furniture, setFurniture] = useState([])
-// const getFurniture = () => {
-//     axios.get('http://furnituredjango.herokuapp.com/api/furnitures')
-//     .then((response)=>{
-//         console.log(response.data)
-//     })
-// }
+import photo from '../images/6-drawer-dresser.jpg'
 
+const HomePage = () => {
+    const [trendingFurniture, setTrendingFurniture] = useState([])
+
+const getTrendingFurniture = () => {
+    axios.get('http://furnituredjango.herokuapp.com/api/furnitures')
+    .then((response)=>{
+        setTrendingFurniture(response.data)
+    })
+}
+useEffect(()=>{
+    getTrendingFurniture()
+})
 
     return(
  <>
@@ -89,12 +96,73 @@ const HomePage = () => {
         <h2 className='trending-title'><span>Trending Products</span></h2>
     <section className='main-container'>
         <div className='trending-container'>
+        {trendingFurniture.slice(0,6).map((item)=>{
+            return(
+                <div key={item.id} className='container'>
+                    <p>{item.name}</p>
+                    <div className='image-container'>
+                    <img src={photo}/>
+                    </div>
+                    <div className='contents'>
+                        <p className='price'><b>${item.price}</b></p>
+                        <p>Color: {item.color}</p>
+                        <p className='stock'> {item.availability ? 'In Stock'  : 'Out of Stock'} {item.availability ? <Check /> : <Exclamation/>}</p>
+                    </div>
+                </div>
+            )
+        })}
+
+
+
 
         </div>
     </section>
-    <section>
-
+    <section className='discount-section'>
+        <img src={emailSec}/>
+        <div className='deal-section'>
+            <p className='deal-title'>Get <span>$50</span> Discount On Your First Order!</p>
+            <p className='signup-info'>Sign up for your email offer.</p>
+            <div className='email-sign'>
+                <input type='text' placeholder='Email Address'/>
+                <button>Send</button>
+            </div>
+        </div>
     </section>
+    <section className='contact-section'>
+        <div>
+            <img src={contact}/>
+        </div>
+        <div className='form-container'>
+            <form className='contact-form'>
+                <h4>Send Us an Email:</h4>
+                <input type='text' placeholder='Name'/>
+                <input type='email' placeholder='Email Address'/>
+                <input type='text' placeholder='Subject'/>
+                <textarea placeholder='Message..'></textarea>
+                <button className='submit'>Send</button>
+            </form>
+        </div>
+    </section>
+    <footer>
+        <div className='icons'>
+            <p><Facebook/></p>
+            <p><Twitter/></p>
+            <p><Linkedin/></p>
+            <p><Instagram/></p>
+        </div>
+        <div className='sec'>
+            <p>Privacy Policy</p>
+            <p>Terms/Conditions</p>
+            <p>Information</p>
+            <p>More Info</p>
+        </div>
+        <div className='sec'>
+            <p>Account</p>
+            <p>More Info</p>
+            <p>Shipping</p>
+            <p>Security</p>
+        </div>
+    </footer>
 
 </>
 
