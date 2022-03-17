@@ -52,7 +52,7 @@ export const NavbarLink = styled(Link)`
 `
 export const NavbarLogo = styled.img `
     margin: 5px;
-    width: 110px;
+    width: 160px;
    height: auto;
 `
 
