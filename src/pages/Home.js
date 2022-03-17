@@ -64,7 +64,7 @@ const HomePage = () => {
             </div>
         </div>
     </div>
-    <div className="shipping-section">
+    <section className="shipping-section">
         <div className='info-container'>
             <Truck />
             <h4>Fast Free Shipping</h4>
@@ -85,10 +85,16 @@ const HomePage = () => {
             <h4>Customer Online Support</h4>
             <p>24/7 Online Customer Chat with real people!</p>
         </div>
-    </div>
-    <div>
-
-    </div>
+    </section>
+        <h2 className='trending-title'><span>Trending Products</span></h2>
+    <section className='main-container'>
+        <div className='trending-container'>
+            
+        </div>
+    </section>
+    <section>
+        
+    </section>
         
 </>
 

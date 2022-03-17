@@ -67,7 +67,7 @@ transition: all .5s ease;
   background-color: rgb(237, 234, 230);
   display: flex;
   justify-content: space-around;
-  margin: 7vh 0;
+  margin: 7vh 0 10vh 0;
   flex-wrap: wrap;
 }
 .info-container{
@@ -91,6 +91,20 @@ transition: all .5s ease;
   text-align: center;
   padding: 2px 5px;
 }
+.trending-title{
+  text-align: center;
+  font-family: 'Nanum Myeongjo', serif;
+  font-size: 3rem;
+  margin-bottom: 3vh;
+  width: 100%;
+  border-bottom: 1px solid #bbb;
+  line-height: 0.1em;
+}
+.trending-title span {
+  background:whitesmoke;
+  padding: 0 20px;
+}
+
 @media (max-width: 650px) {
   .detail-container{
     flex-direction: column;
