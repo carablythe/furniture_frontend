@@ -12,6 +12,7 @@ const Cart = (props) => {
         <div> Cart is Empty</div>
       }
       </div>
+      <Cart cartItems={cartItems}></Cart>
     </aside>
   )
 }
