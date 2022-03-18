@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios'
+import AddToCart from './Cart'
 
 const ShowItem = (props) => {
   const [product, setProduct] = useState([]);
@@ -13,17 +14,6 @@ const ShowItem = (props) => {
        .catch((error) => console.error(error))
    }
 
-
-   const onAdd = (product) => {
-     const exist = cartItems.find(x => x.id === product.id);
-     if(exist) {
-       setCartItems(
-         cartItems.map(x => x.id === product.id ? {...exist, qty: exist.qty +1} : x)
-       );
-     } else {
-       setCartItems([...cartItems,{...product, qty: 1}])
-     }
-    }
 
   // const handleDelete = (event, deletedProduct) => {
   //  axios
@@ -50,7 +40,7 @@ const ShowItem = (props) => {
       <h5>Color: {product.color} </h5>
       <h5>Items left in stock: {product.quantity} </h5>
       <div>${product.price}</div>
-      <div><button onClick = {()=> onAdd()}>Add to Cart</button></div>
+      <div><button onClick={()=> AddToCart(product)}>Add to Cart</button></div>
       </div>
     </>
   )

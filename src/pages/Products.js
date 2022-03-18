@@ -10,11 +10,13 @@ import dresser from '../images/6-drawer-dresser.jpg'
 import bedFrame from '../images/3soft-pink-bedframe.jpg'
 import headboard from '../images/3tuffed-cream-headboard.jpg'
 import {Check, Exclamation} from 'react-bootstrap-icons'
-
+import AddToCart from "./Cart"
+import ShowItem from "./ShowItem"
 
 
 const Products = (props) => {
   const [products, setProducts] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
   const [query, setQuery] = useState("")
   const [showCouches, setShowCouches] = useState(false);
   const [showTables, setShowTables] = useState(false);
@@ -32,7 +34,6 @@ const Products = (props) => {
        (error) => console.error(error))
        .catch((error) => console.error(error))
    }
-
 
   useEffect(() => {
   getProducts()
@@ -75,6 +76,8 @@ return (
                     <p>Color: {product.color}</p>
                     <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'} {product.availability ? <Check /> : <Exclamation/>}</p>
                 </div>
+                <div><button onClick={()=> AddToCart(product)}>
+                Add to Cart</button></div>
            </div>
          )})
          }
@@ -105,6 +108,8 @@ return (
                     <p>Color: {product.color}</p>
                     <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'} {product.availability ? <Check /> : <Exclamation/>}</p>
                 </div>
+                <div><button onClick={()=> AddToCart(product)}>
+                Add to Cart</button></div>
            </div>
            )})
            }
@@ -135,6 +140,8 @@ return (
                     <p>Color: {product.color}</p>
                     <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'} {product.availability ? <Check /> : <Exclamation/>}</p>
                 </div>
+                <div><button onClick={()=> AddToCart(product)}>
+                Add to Cart</button></div>
            </div>
              )})
             }
@@ -164,7 +171,9 @@ return (
                     <p className='price'><b>${product.price}</b></p>
                     <p>Color: {product.color}</p>
                     <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'} {product.availability ? <Check /> : <Exclamation/>}</p>
-                </div>
+                  </div>
+                  <div><button onClick={()=> AddToCart(product)}>
+                  Add to Cart</button></div>
            </div>
                )})
                }
@@ -194,7 +203,9 @@ return (
                       <p className='price'><b>${product.price}</b></p>
                       <p>Color: {product.color}</p>
                       <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'} {product.availability ? <Check /> : <Exclamation/>}</p>
-                  </div>
+                    </div>
+                    <div><button onClick={()=> AddToCart(product)}>
+                    Add to Cart</button></div>
              </div>
                 )})
                }
@@ -225,6 +236,8 @@ return (
                         <p>Color: {product.color}</p>
                         <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'} {product.availability ? <Check /> : <Exclamation/>}</p>
                      </div>
+                     <div><button onClick={()=> AddToCart(product)}>
+                     Add to Cart</button></div>
                   </div>
                  )})
               }
@@ -254,7 +267,9 @@ return (
                       <p className='price'><b>${product.price}</b></p>
                       <p>Color: {product.color}</p>
                       <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'} {product.availability ? <Check /> : <Exclamation/>}</p>
-                  </div>
+                    </div>
+                    <div><button onClick={()=> AddToCart(product)}>
+                    Add to Cart</button></div>
              </div>
                )})
               }
@@ -285,6 +300,8 @@ return (
                        <p>Color: {product.color}</p>
                        <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'} {product.availability ? <Check /> : <Exclamation/>}</p>
                     </div>
+                    <div><button onClick={()=> AddToCart(product)}>
+                    Add to Cart</button></div>
                  </div>
                )})
               }
@@ -319,7 +336,7 @@ return (
           })
           .map((product)=>{
       return(
-        <div className='container'>
+        <div className='container' key={product._id}>
                       <a href = './ShowItem'>{product.name}</a>
                     <div className='image-container'>
                       <img/>
@@ -329,9 +346,11 @@ return (
                        <p>Color: {product.color}</p>
                        <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'} {product.availability ? <Check /> : <Exclamation/>}</p>
                     </div>
+                    <div><button onClick={()=> AddToCart(product)}>
+                    Add to Cart</button></div>
                  </div>
-      )
-    })}
+            )
+      })}
   </div>
 </>
 )}
