@@ -208,11 +208,12 @@ footer{
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin: 2vh 4vw;
+  margin: 2vh 0;
 }
 .container{
   width: 25%;
-  min-width: 300px;
+  padding: 0;
+  min-width: 190px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -222,12 +223,11 @@ footer{
   box-shadow: 0 3px 5px rgb(100 100 100 /.1);
 }
 .container > p {
-  font-size: 20px;
+  font-size: 18px;
   font-family: '';
   margin-top: 2vh;
-  padding: 0 10px;
+  padding: 0;
   border-bottom: 1px solid rgb(179, 176, 176);
-
 }
 .image-container{
   width: 100%;
@@ -236,22 +236,55 @@ footer{
   width: 100%;
 }
 .contents {
- 
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
-.contents > p {
+.contents-main > p {
   font-size: 15px;
-  padding-left: 5px;
+  padding: 0 5px;
+  font-family: 'Nanum Myeongjo', serif;
+  margin-bottom: 1px;
+}
+
+.contents-main > a{
+  font-size: 18px;
+  color: black !important;
+  text-decoration: none;
+  font-family: 'Nanum Myeongjo', serif;
+  padding-left: 3px;
+  transition: all .3s ease-in-out ;
+  cursor: pointer;
+  display: inline-block;
+}
+.contents-main > .contents-title:hover {
+  transform: scale(1.05); 
+  text-decoration: underline;
+}
+.contents-price{
+  display: flex;
+  flex-direction: column;
+}
+.contents-price > .price {
+  padding-right: 5px;
   font-family: '';
+  font-size: 15px;
 }
 .stock {
   color: grey;
 }
-.contents > .price{
-  float: right;
-  padding-right: 5px;
-  font-size: 22px;
+/* .contents-right > .price{
+  margin-bottom: 0;
+  font-size: 20px;
+  height: 100%;
 }
+.contents-right{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+} */
 .cart-title{
   text-align: center;
   margin: 5vh auto;
@@ -325,7 +358,7 @@ footer{
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin: 2vh 4vw;
+  margin: 2vh 0;
 }
 .container > a{
   color: black;
@@ -345,7 +378,72 @@ footer{
   background:whitesmoke;
   padding: 0 20px;
 }
-
+button{
+  padding-bottom: 10px;
+  border:none;
+  background: transparent;
+  font-size: 22px;
+  color: grey;
+  transition: all .3s ease;
+}
+button:hover{
+  color: black;
+  transform: scale(1.1);
+}
+.search-container{
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 5rem 0 0;
+}
+.search-container > input {
+  background-color: transparent;
+  border:none;
+  border-bottom: 1px solid black;
+  margin-left: 10px;
+  padding: 0 20px;
+}
+.container2{
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10vh auto;
+}
+.image-container2{
+  width: 50%;
+}
+.image-container2 > img {
+  width: 100%;
+}
+.contents2 {
+  width: 40%;
+}
+.contents-main2{
+  display: flex;
+  flex-direction: column;
+  margin-left: 3vw;
+  font-family: 'Nanum Myeongjo', serif;
+}
+.contents-main2 > .contents-title {
+  color: black;
+  font-size: 3vw;
+}
+.quantity {
+  display: flex;
+  align-items: center;
+}
+.quantity > button {
+  margin: 0 1vw 1vw 1vw;
+}
+.quantity > div {
+  margin: 0 1vw 1vw 1vw;
+}
+#add-cart {
+  border: 1px solid grey;
+  padding: 8px;
+  width: 50%;
+  align-self: flex-end;
+}
 @media (max-width: 1000px) {
   .deal-title{
     font-weight: bold;
@@ -369,7 +467,14 @@ footer{
   .submit {
     width: 8rem;
   }
+  .contents-main > p {
+    font-size: 13px;
+  }
+  .contents-main > .contents-title{
+    font-size: 16px;
+  }
 }
+
 @media (max-width: 750px) {
   .contact-section{
     flex-direction: column;
@@ -421,5 +526,23 @@ footer{
   }
   .overlay2 > h3{
     font-size: 17px;
+  }
+  .trending-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2vh 0;
+  }
+  .container{
+    width: 47%;
+    min-width: 150px;
+    padding: 0;
+  }
+  .contents-main > p {
+    font-size: 12px;
+  }
+  .contents-main > .contents-title{
+    font-size: 15px;
   }
 }

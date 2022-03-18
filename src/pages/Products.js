@@ -9,10 +9,10 @@ import desk from '../images/3white-gold-desk.jpg'
 import dresser from '../images/6-drawer-dresser.jpg'
 import bedFrame from '../images/3soft-pink-bedframe.jpg'
 import headboard from '../images/3tuffed-cream-headboard.jpg'
-import {Check, Exclamation} from 'react-bootstrap-icons'
+import {Check, Exclamation, CartCheck, Search} from 'react-bootstrap-icons'
 import AddToCart from "./Cart"
 import ShowItem from "./ShowItem"
-
+import {Link} from 'react-router-dom'
 
 const Products = (props) => {
   const [products, setProducts] = useState([]);
@@ -33,6 +33,13 @@ const Products = (props) => {
        (response) => setProducts(response.data),
        (error) => console.error(error))
        .catch((error) => console.error(error))
+   }
+
+   const AddToCart = (event) => {
+    axios.post('https://furnituredjango.herokuapp.com/admin/furnitures_api/order/').then(
+      (response)=>{
+        console.log(response.data)
+      })
    }
 
   useEffect(() => {
@@ -66,19 +73,31 @@ return (
           }
         }).map((product, index) => {
           return(
-            <div className='container'>
-              <a href = './ShowItem'>{product.name}</a>
-                <div className='image-container'>
-                  <img/>
+            <div className='container' key={product.id}> 
+            <Link to={`/${product.id}/`}>
+              <div className='image-container'>
+                <img src={product.img}/>
+              </div>
+            </Link>
+              <div className='contents'>
+                <div className='contents-main'>
+                  <Link to={`/${product.id}/`}>
+                      <p className='contents-title'>{product.name}</p>
+                  </Link>
+                      <p>Color: {product.color}</p>
+                      <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'} 
+                      {product.availability ? <Check /> : <Exclamation/>}
+                      </p>
+                  </div>
+                  <div className='contents-price'>
+                      <p className='price'><b>${product.price}</b></p>
+                     
+                      <button onClick={()=> AddToCart(product)}>
+                    <CartCheck/></button>
+                    
                 </div>
-                <div className='contents'>
-                    <p className='price'><b>${product.price}</b></p>
-                    <p>Color: {product.color}</p>
-                    <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'} {product.availability ? <Check /> : <Exclamation/>}</p>
-                </div>
-                <div><button onClick={()=> AddToCart(product)}>
-                Add to Cart</button></div>
-           </div>
+            </div>
+        </div>
          )})
          }
       </>
@@ -98,19 +117,30 @@ return (
             }
           }).map((product, index) => {
             return(
-              <div className='container'>
-              <a href = './ShowItem'>{product.name}</a>
-                <div className='image-container'>
-                  <img/>
-                </div>
-                <div className='contents'>
-                    <p className='price'><b>${product.price}</b></p>
-                    <p>Color: {product.color}</p>
-                    <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'} {product.availability ? <Check /> : <Exclamation/>}</p>
-                </div>
-                <div><button onClick={()=> AddToCart(product)}>
-                Add to Cart</button></div>
-           </div>
+              <div className='container' key={product.id}> 
+                  <Link to={`/${product.id}/`}>
+                    <div className='image-container'>
+                      <img src={product.img}/>
+                    </div>
+                  </Link>
+                    <div className='contents'>
+                      <div className='contents-main'>
+                        <Link to={`/${product.id}/`}>
+                            <p className='contents-title'>{product.name}</p>
+                        </Link>
+                            <p>Color: {product.color}</p>
+                            <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'} 
+                            {product.availability ? <Check /> : <Exclamation/>}
+                            </p>
+                        </div>
+                        <div className='contents-price'>
+                            <p className='price'><b>${product.price}</b></p>
+                            <button onClick={()=> AddToCart(product)}>
+                          <CartCheck/></button>
+                          
+                      </div>
+                  </div>
+              </div>
            )})
            }
         </>
@@ -130,19 +160,31 @@ return (
             }
             }).map((product, index) => {
               return(
-                <div className='container'>
-                  <a href = './ShowItem'>{product.name}</a>
-                <div className='image-container'>
-                  <img/>
-                </div>
-                <div className='contents'>
-                    <p className='price'><b>${product.price}</b></p>
-                    <p>Color: {product.color}</p>
-                    <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'} {product.availability ? <Check /> : <Exclamation/>}</p>
-                </div>
-                <div><button onClick={()=> AddToCart(product)}>
-                Add to Cart</button></div>
-           </div>
+                <div className='container' key={product.id}> 
+                  <Link to={`/${product.id}/`}>
+                    <div className='image-container'>
+                      <img src={product.img}/>
+                    </div>
+                  </Link>
+                    <div className='contents'>
+                      <div className='contents-main'>
+                        <Link to={`/${product.id}/`}>
+                            <p className='contents-title'>{product.name}</p>
+                        </Link>
+                            <p>Color: {product.color}</p>
+                            <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'} 
+                            {product.availability ? <Check /> : <Exclamation/>}
+                            </p>
+                        </div>
+                        <div className='contents-price'>
+                            <p className='price'><b>${product.price}</b></p>
+                           
+                            <button onClick={()=> AddToCart(product)}>
+                          <CartCheck/></button>
+                          
+                      </div>
+                  </div>
+              </div>
              )})
             }
         </>
@@ -162,19 +204,31 @@ return (
                }
               }).map((product, index) => {
                 return(
-                  <div className='container'>
-                    <a href = './ShowItem'>{product.name}</a>
-                  <div className='image-container'>
-                   <img/>
+                  <div className='container' key={product.id}> 
+                  <Link to={`/${product.id}/`}>
+                    <div className='image-container'>
+                      <img src={product.img}/>
+                    </div>
+                  </Link>
+                    <div className='contents'>
+                      <div className='contents-main'>
+                        <Link to={`/${product.id}/`}>
+                            <p className='contents-title'>{product.name}</p>
+                        </Link>
+                            <p>Color: {product.color}</p>
+                            <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'} 
+                            {product.availability ? <Check /> : <Exclamation/>}
+                            </p>
+                        </div>
+                        <div className='contents-price'>
+                            <p className='price'><b>${product.price}</b></p>
+                           
+                            <button onClick={()=> AddToCart(product)}>
+                          <CartCheck/></button>
+                          
+                      </div>
                   </div>
-                  <div className='contents'>
-                    <p className='price'><b>${product.price}</b></p>
-                    <p>Color: {product.color}</p>
-                    <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'} {product.availability ? <Check /> : <Exclamation/>}</p>
-                  </div>
-                  <div><button onClick={()=> AddToCart(product)}>
-                  Add to Cart</button></div>
-           </div>
+              </div>
                )})
                }
           </>
@@ -194,19 +248,31 @@ return (
                 }
                 }).map((product, index) => {
                   return(
-                    <div className='container'>
-                     <a href = './ShowItem'>{product.name}</a>
+                    <div className='container' key={product.id}> 
+                  <Link to={`/${product.id}/`}>
                     <div className='image-container'>
-                      <img/>
+                      <img src={product.img}/>
                     </div>
+                  </Link>
                     <div className='contents'>
-                      <p className='price'><b>${product.price}</b></p>
-                      <p>Color: {product.color}</p>
-                      <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'} {product.availability ? <Check /> : <Exclamation/>}</p>
-                    </div>
-                    <div><button onClick={()=> AddToCart(product)}>
-                    Add to Cart</button></div>
-             </div>
+                      <div className='contents-main'>
+                        <Link to={`/${product.id}/`}>
+                            <p className='contents-title'>{product.name}</p>
+                        </Link>
+                            <p>Color: {product.color}</p>
+                            <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'} 
+                            {product.availability ? <Check /> : <Exclamation/>}
+                            </p>
+                        </div>
+                        <div className='contents-price'>
+                            <p className='price'><b>${product.price}</b></p>
+                           
+                            <button onClick={()=> AddToCart(product)}>
+                          <CartCheck/></button>
+                          
+                      </div>
+                  </div>
+              </div>
                 )})
                }
           </>
@@ -226,19 +292,31 @@ return (
                 }
                 }).map((product, index) => {
                   return(
-                    <div className='container'>
-                      <a href = './ShowItem'>{product.name}</a>
+                    <div className='container' key={product.id}> 
+                  <Link to={`/${product.id}/`}>
                     <div className='image-container'>
-                      <img/>
-                     </div>
-                     <div className='contents'>
-                        <p className='price'><b>${product.price}</b></p>
-                        <p>Color: {product.color}</p>
-                        <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'} {product.availability ? <Check /> : <Exclamation/>}</p>
-                     </div>
-                     <div><button onClick={()=> AddToCart(product)}>
-                     Add to Cart</button></div>
+                      <img src={product.img}/>
+                    </div>
+                  </Link>
+                    <div className='contents'>
+                      <div className='contents-main'>
+                        <Link to={`/${product.id}/`}>
+                            <p className='contents-title'>{product.name}</p>
+                        </Link>
+                            <p>Color: {product.color}</p>
+                            <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'} 
+                            {product.availability ? <Check /> : <Exclamation/>}
+                            </p>
+                        </div>
+                        <div className='contents-price'>
+                            <p className='price'><b>${product.price}</b></p>
+                           
+                            <button onClick={()=> AddToCart(product)}>
+                          <CartCheck/></button>
+                          
+                      </div>
                   </div>
+              </div>
                  )})
               }
           </>
@@ -258,19 +336,31 @@ return (
                 }
                 }).map((product, index) => {
                   return(
-                    <div className='container'>
-                      <a href = './ShowItem'>{product.name}</a>
+                    <div className='container' key={product.id}> 
+                  <Link to={`/${product.id}/`}>
                     <div className='image-container'>
-                      <img/>
+                      <img src={product.img}/>
                     </div>
+                  </Link>
                     <div className='contents'>
-                      <p className='price'><b>${product.price}</b></p>
-                      <p>Color: {product.color}</p>
-                      <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'} {product.availability ? <Check /> : <Exclamation/>}</p>
-                    </div>
-                    <div><button onClick={()=> AddToCart(product)}>
-                    Add to Cart</button></div>
-             </div>
+                      <div className='contents-main'>
+                        <Link to={`/${product.id}/`}>
+                            <p className='contents-title'>{product.name}</p>
+                        </Link>
+                            <p>Color: {product.color}</p>
+                            <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'} 
+                            {product.availability ? <Check /> : <Exclamation/>}
+                            </p>
+                        </div>
+                        <div className='contents-price'>
+                            <p className='price'><b>${product.price}</b></p>
+                           
+                            <button onClick={()=> AddToCart(product)}>
+                          <CartCheck/></button>
+                          
+                      </div>
+                  </div>
+              </div>
                )})
               }
           </>
@@ -290,19 +380,31 @@ return (
                 }
                 }).map((product, index) => {
                   return(
-                    <div className='container'>
-                      <a href = './ShowItem'>{product.name}</a>
+                    <div className='container' key={product.id}> 
+                  <Link to={`/${product.id}/`}>
                     <div className='image-container'>
-                      <img/>
+                      <img src={product.img}/>
                     </div>
+                  </Link>
                     <div className='contents'>
-                       <p className='price'><b>${product.price}</b></p>
-                       <p>Color: {product.color}</p>
-                       <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'} {product.availability ? <Check /> : <Exclamation/>}</p>
-                    </div>
-                    <div><button onClick={()=> AddToCart(product)}>
-                    Add to Cart</button></div>
-                 </div>
+                      <div className='contents-main'>
+                        <Link to={`/${product.id}/`}>
+                            <p className='contents-title'>{product.name}</p>
+                        </Link>
+                            <p>Color: {product.color}</p>
+                            <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'} 
+                            {product.availability ? <Check /> : <Exclamation/>}
+                            </p>
+                        </div>
+                        <div className='contents-price'>
+                            <p className='price'><b>${product.price}</b></p>
+                           
+                            <button onClick={()=> AddToCart(product)}>
+                          <CartCheck/></button>
+                          
+                      </div>
+                  </div>
+              </div>
                )})
               }
          </>
@@ -310,10 +412,11 @@ return (
        }
   </div>
   <h3 className=' all'><span>All Products</span></h3>
-  <h5>Something in particular you are looking for?
-        <input placeholder="Enter Query" className="searchBar"
+      <div className='search-container'>
+        <h5><Search/></h5>
+        <input placeholder="Search" className="searchBar"
         onChange={event => setQuery(event.target.value)} />
-  </h5>
+      </div>
   <div className='category-contents'>
     {products.filter((product) => {
             if (product.name.includes(query)) {
@@ -336,22 +439,35 @@ return (
           })
           .map((product)=>{
       return(
-        <div className='container' key={product._id}>
-                      <a href = './ShowItem'>{product.name}</a>
+        <div className='container' key={product.id}> 
+                  <Link to={`/${product.id}/`}>
                     <div className='image-container'>
-                      <img/>
+                      <img src={product.img}/>
                     </div>
+                  </Link>
                     <div className='contents'>
-                       <p className='price'><b>${product.price}</b></p>
-                       <p>Color: {product.color}</p>
-                       <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'} {product.availability ? <Check /> : <Exclamation/>}</p>
-                    </div>
-                    <div><button onClick={()=> AddToCart(product)}>
-                    Add to Cart</button></div>
-                 </div>
+                      <div className='contents-main'>
+                        <Link to={`/${product.id}/`}>
+                            <p className='contents-title'>{product.name}</p>
+                        </Link>
+                            <p>Color: {product.color}</p>
+                            <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'} 
+                            {product.availability ? <Check /> : <Exclamation/>}
+                            </p>
+                        </div>
+                        <div className='contents-price'>
+                            <p className='price'><b>${product.price}</b></p>
+                           
+                            <button onClick={()=> AddToCart(product)}>
+                          <CartCheck/></button>
+                          
+                      </div>
+                  </div>
+              </div>
             )
       })}
   </div>
+  
 </>
 )}
 
