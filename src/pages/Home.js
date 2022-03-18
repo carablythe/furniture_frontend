@@ -111,10 +111,6 @@ useEffect(()=>{
                 </div>
             )
         })}
-
-
-
-
         </div>
     </section>
     <section className='discount-section'>

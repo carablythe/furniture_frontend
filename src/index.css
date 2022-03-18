@@ -252,6 +252,99 @@ footer{
   padding-right: 5px;
   font-size: 22px;
 }
+.cart-title{
+  text-align: center;
+  margin: 5vh auto;
+  font-size: 40px;
+  font-family: '';
+}
+.empty-container{
+  width: 100vw;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cart-empty{
+  text-align: center;
+  margin: 10vh auto;
+  font-size: 20px;
+  color: grey;
+}
+.products-heading{
+  text-align: center;
+  font-size: 3.5rem;
+  margin: 8vh auto 10vh;
+  font-family: 'Nanum Myeongjo', serif;
+  background-color: white;
+  padding: 15px;
+}
+.categories {
+  font-family: '';
+  width: 10%;
+  position: relative;
+  min-width: 85px;
+  /* box-shadow: 0 3px 10px rgb(100 100 100 /.1); */
+  background: whitesmoke;
+  transition: all .3s ease;
+}
+.categories > img {
+  width: 100%;
+}
+.categories > .overlay2{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(255 255 255 / .5);
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+.categories:hover{
+  transform: scale(1.05);
+}
+.categories >.overlay2:hover {
+  transform: scale(1.05);
+}
+.overlay2 > h3{
+  font-size: 1.7vw;
+  color: black;
+  text-shadow: 0 3px 10px rgb(0 0 0 /.3);
+  cursor: pointer;
+}
+.main-container{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.category-contents{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 2vh 4vw;
+}
+.container > a{
+  color: black;
+  font-family: '';
+  font-size: 23px;
+}
+.all {
+  text-align: center;
+  font-family: 'Nanum Myeongjo', serif;
+  font-size: 3rem;
+  margin:0 0 3vh 0 ;
+  width: 100%;
+  border-bottom: 1px solid #bbb;
+  line-height: 0.1em;
+}
+.all span {
+  background:whitesmoke;
+  padding: 0 20px;
+}
 
 @media (max-width: 1000px) {
   .deal-title{
@@ -284,6 +377,9 @@ footer{
   .contact-section > div {
     width: 100%;
     margin-bottom: 3vh;
+  }
+  .overlay2 > h3{
+    font-size: 17px;
   }
 }
 @media (max-width: 650px) {
@@ -322,5 +418,8 @@ footer{
   }
   .email-sign > button {
     padding: 1px 15px;
+  }
+  .overlay2 > h3{
+    font-size: 17px;
   }
 }
