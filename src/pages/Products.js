@@ -15,6 +15,7 @@ import {Check, Exclamation} from 'react-bootstrap-icons'
 
 const Products = (props) => {
   const [products, setProducts] = useState([]);
+  const [query, setQuery] = useState("")
   const [showCouches, setShowCouches] = useState(false);
   const [showTables, setShowTables] = useState(false);
   const [showChairs, setShowChairs] = useState(false);
@@ -23,6 +24,7 @@ const Products = (props) => {
   const [showDressers, setShowDressers] = useState(false);
   const [showBedFrames, setShowBedFrames] = useState(false);
   const [showHeadboards, setShowHeadboards] = useState(false);
+
 
   const getProducts = () => {
      axios.get('https://furnituredjango.herokuapp.com/api/furnitures').then(
@@ -137,7 +139,7 @@ return (
              )})
             }
         </>
-        ): null 
+        ): null
       }
   </div>
   <div className='category-contents'>
@@ -291,8 +293,31 @@ return (
        }
   </div>
   <h3 className=' all'><span>All Products</span></h3>
+  <h5>Something in particular you are looking for?
+        <input placeholder="Enter Query" className="searchBar"
+        onChange={event => setQuery(event.target.value)} />
+  </h5>
   <div className='category-contents'>
-    {products.map((product)=>{
+    {products.filter((product) => {
+            if (product.name.includes(query)) {
+              return product;
+            } else if (
+              product.name.toLowerCase().includes(query.toLowerCase()))
+            {
+              return product;
+            }
+            else if (
+              product.color.includes(query))
+            {
+              return product;
+            }
+            else if (
+              product.color.toLowerCase().includes(query.toLowerCase()))
+            {
+              return product;
+            }
+          })
+          .map((product)=>{
       return(
         <div className='container'>
                       <a href = './ShowItem'>{product.name}</a>
