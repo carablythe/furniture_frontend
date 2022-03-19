@@ -6,6 +6,7 @@ import HomePage from './pages/Home'
 import Products from './pages/Products'
 import ShowItem from './pages/ShowItem'
 import Cart from './pages/Cart'
+import LoginPage from './pages/Login'
 
 const App = () => {
 
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/order" element={<Cart/>} />
         <Route path="/admin" />
         <Route path="/:id" element={<ShowItem/>}/>
+        <Route path="/login" element={<LoginPage/>}/>
       </Routes>
     </Router>
 
