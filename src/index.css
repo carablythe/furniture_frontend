@@ -446,6 +446,7 @@ button:hover{
 }
 .cart-heading{
   display: flex;
+  align-items: center;
 }
 .container3 {
   width: 95%;
@@ -495,6 +496,41 @@ button:hover{
   color:grey;
   text-decoration:overline;
   transform: translateY(-3px);
+}
+.checkout{
+  border: 1px solid grey;
+  color: white;
+  padding: 10px 10px;
+  width: 80%;
+  background: rgb(120, 87, 78);
+  border: none;
+  font-family: 'Nanum Myeongjo', serif;
+}
+.cart-heading > p {
+  margin-right: 20px;
+  font-family: 'Nanum Myeongjo', serif;
+}
+.checkout-summary {
+  width: 40%;
+  max-width: 500px;
+  background-color: rgb(230, 230, 230);
+  padding: 20px;
+  font-family: 'Nanum Myeongjo', serif;
+}
+.order-details {
+  background: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  margin: 2vh 0;
+  box-shadow: 0 3px 10px rgb(100 100 100 /.1);
+}
+.order-details > .total {
+  border-bottom: none;
+}
+.order-details > p {
+  border-bottom: 1px solid grey;
+  padding: 10px;
+  width: 90%;
 }
 @media (max-width: 1000px) {
   .deal-title{

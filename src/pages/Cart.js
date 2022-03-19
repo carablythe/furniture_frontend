@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios'
 import {useState, useEffect} from 'react'
-import {Check, Exclamation, CartCheck, Search, Plus, Dash, CartX} from 'react-bootstrap-icons'
+import {Check, Exclamation, Plus, Dash, CartX, ArrowRight} from 'react-bootstrap-icons'
 import {Link} from 'react-router-dom'
 
 const Cart = (props) => {
@@ -25,6 +25,11 @@ const Cart = (props) => {
       setQuantity(quantity - 1)
       console.log(quantity);
     }
+
+   const Total = () => {
+     return cartItems.reduce((sum, total)=> sum + total.price, '')
+   }
+    
     
     // const getCartProducts = (cart) => {
     //     axios.post('https://furnituredjango.herokuapp.com/api/furnitures', {cart}).then(
@@ -65,8 +70,8 @@ console.log(cartItems)
     <>
     <div className= "cart-heading">
       <h2 className='cart-title'>Cart Items</h2>
-      {!cartItems.length ? "" : <button className='shop-button'>Continue Shopping</button>}
-      </div>
+      <p>{!cartItems.length ? "" : <button className='shop-button'>Continue Shopping</button>}
+      </p>   </div>
       {!cartItems.length ?
       <div className='empty-container'> 
         <div className='cart-empty'>
@@ -97,13 +102,22 @@ console.log(cartItems)
                       <div id='button-container'>
                       <button>Edit</button> 
                       <button>Delete</button>
-                      </div>
+                      </div>  
                 </div>
-                
-                  <div></div>
-        
-</div>
-</div>
+              </div>
+              <div className='checkout-summary'>
+                      <h3>Order Summary:</h3>
+                      <div className="order-details">
+                        <p> {cartItems.length} {cartItems.length > 1 ? "PRODUCTS" : 'PRODUCT'}</p>
+                        <p>Product total ${Total()}</p>
+                        <p>Delivery FREE</p>
+                        <p className='total'>Total ${Total()}</p>
+                      </div>
+                      <p>By placing this order you agree to the Delivery Terms</p>
+                          <button className='checkout'>Checkout <ArrowRight/></button>
+                  </div>
+                  
+        </div>
      )})}
      </div>
      }
