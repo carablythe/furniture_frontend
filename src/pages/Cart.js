@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios'
 import {useState, useEffect} from 'react'
 import {CartX} from 'react-bootstrap-icons'
+import Products from './Products'
+import ShowItem from './ShowItem'
 
 
 const Cart = (props) => {
@@ -15,7 +17,7 @@ const Cart = (props) => {
          (error) => console.error(error))
          .catch((error) => console.error(error))
      }
-    
+
     // const getCartProducts = (cart) => {
     //     axios.post('https://furnituredjango.herokuapp.com/api/furnitures', {cart}).then(
     //       (response => response.data))
@@ -54,7 +56,7 @@ const Cart = (props) => {
   return (
     <aside className= "block">
       <h2 className='cart-title'>Cart Items</h2>
-      
+
       <div className='empty-container'> {
         cartItems.length === 0 &&
         <div className='cart-empty'>
@@ -62,7 +64,7 @@ const Cart = (props) => {
         </div>
         }
      </div>
-    
+
      <>
      {cartItems.map((item) => (
        <div key = {item.id} className = "row">
@@ -80,6 +82,7 @@ const Cart = (props) => {
       </div>
       </div>
     ))}
+
     {cartItems.length !== 0 && (
       <>
       <hr></hr>
@@ -91,7 +94,7 @@ const Cart = (props) => {
       </>
      )}
      </>
-   
+
    </aside>
   )
 }
