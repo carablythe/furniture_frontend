@@ -9,9 +9,11 @@ import detailTwo from '../images/kitchen-table.jpg'
 import detailThree from '../images/brown-leather-chair.jpg'
 import emailSec from '../images/extra3.jpg'
 import contact from '../images/contact1.jpg'
-import { Truck, Flower1, Telephone, Globe, Facebook, Linkedin, Twitter, Instagram, Check, Exclamation} from 'react-bootstrap-icons'
+import { Truck, Flower1, Telephone, Globe, Facebook, Linkedin, Twitter, Instagram, Check, Exclamation, CartCheck} from 'react-bootstrap-icons'
 import axios from 'axios'
 import photo from '../images/6-drawer-dresser.jpg'
+import {Link} from 'react-router-dom'
+import AddToCart from './Cart'
 
 const HomePage = () => {
     const [trendingFurniture, setTrendingFurniture] = useState([])
@@ -96,19 +98,32 @@ useEffect(()=>{
         <h2 className='trending-title'><span>Trending Products</span></h2>
     <section className='main-container'>
         <div className='trending-container'>
-        {trendingFurniture.slice(0,6).map((item)=>{
+        {trendingFurniture.slice(21,27).map((product)=>{
             return(
-                <div key={item.id} className='container'>
-                    <p>{item.name}</p>
-                    <div className='image-container'>
-                    <img src={photo}/>
-                    </div>
-                    <div className='contents'>
-                        <p className='price'><b>${item.price}</b></p>
-                        <p>Color: {item.color}</p>
-                        <p className='stock'> {item.availability ? 'In Stock'  : 'Out of Stock'} {item.availability ? <Check /> : <Exclamation/>}</p>
+                <div className='container' key={product.id}> 
+                <Link to={`/${product.id}/`}>
+                  <div className='image-container'>
+                    <img src={product.img}/>
+                  </div>
+                </Link>
+                  <div className='contents'>
+                    <div className='contents-main'>
+                      <Link to={`/${product.id}/`}>
+                          <p className='contents-title'>{product.name}</p>
+                      </Link>
+                          <p>Color: {product.color}</p>
+                          <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'} 
+                          {product.availability ? <Check /> : <Exclamation/>}
+                          </p>
+                      </div>
+                      <div className='contents-price'>
+                          <p className='price'><b>${product.price}</b></p>
+                          <button onClick={()=> AddToCart(product)}>
+                        <CartCheck/></button>
+                        
                     </div>
                 </div>
+            </div>
             )
         })}
         </div>
