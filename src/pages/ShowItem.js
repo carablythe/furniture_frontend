@@ -20,17 +20,14 @@ const ShowItem = (props) => {
        .catch((error) => console.error(error))
    }
 
-
-  // const handleDelete = (event, deletedProduct) => {
-  //  axios
-  //   .delete('https://furnituredjango.herokuapp.com/api/furnitures/' + event.target.value)
-  //   .then((response) => {
-  //     setProducts(
-  //       products.filter(x => x.id !== deletedProduct.id)
-  //     )
-  // //   })
-  // //  }
-  //       <button onClick={(event) => {handleDelete(event, product)}} value={product.id}>X</button>
+   const AddToCart = (product) => {
+     axios.post(`https://furnituredjango.herokuapp.com/api/cart`).then(
+       (response) => {
+         console.log(response)
+       }
+     )
+   }
+  
 
   const handleIncrement = (event) => {
     setQuantity(quantity + 1)
@@ -50,7 +47,7 @@ const ShowItem = (props) => {
     <>
           <div className='container2'>
               <div className='image-container2'>
-                  <img src={product.img}/>
+                  <img src={product.imgURL}/>
               </div>
                     <div className='contents2'>
                       <div className='contents-main2'>

@@ -45,9 +45,15 @@ export const NavbarLink = styled(Link)`
     margin: 2%;
     font-family: 'Montserrat', serif;
     font-weight: 200;
+    transition: all .3s ease;
 
     @media (max-width: 700px) {
         display:none;
+    }
+    &:hover{
+        color:grey;
+        text-decoration:overline;
+        transform: translateY(-3px);
     }
 `
 export const NavbarLogo = styled.img `
@@ -86,5 +92,11 @@ export const NavbarLinkExtend = styled(Link)`
     font-size: x-large;
     text-decoration: none;
     margin: 2%;
+    font-family: 'Montserrat', serif;
 
+    &:hover{
+        color:grey;
+        text-decoration:overline;
+        transform: translateY(-3px);
+    }
 `

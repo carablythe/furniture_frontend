@@ -98,12 +98,12 @@ useEffect(()=>{
         <h2 className='trending-title'><span>Trending Products</span></h2>
     <section className='main-container'>
         <div className='trending-container'>
-        {trendingFurniture.slice(21,27).map((product)=>{
+        {trendingFurniture.slice(25,31).map((product)=>{
             return(
                 <div className='container' key={product.id}> 
                 <Link to={`/${product.id}/`}>
                   <div className='image-container'>
-                    <img src={product.img}/>
+                    <img src={product.imgURL}/>
                   </div>
                 </Link>
                   <div className='contents'>
@@ -139,7 +139,7 @@ useEffect(()=>{
             </div>
         </div>
     </section>
-    <section className='contact-section'>
+    <section id='contact' className='contact-section'>
         <div>
             <img src={contact}/>
         </div>

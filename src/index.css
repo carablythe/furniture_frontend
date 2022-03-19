@@ -444,6 +444,58 @@ button:hover{
   width: 50%;
   align-self: flex-end;
 }
+.cart-heading{
+  display: flex;
+}
+.container3 {
+  width: 95%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10vh auto;
+}
+#button-container{
+  width: 10rem;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2vh;
+}
+#button-container > button {
+  font-size: 18px;
+  text-decoration: underline;
+}
+.shop-button {
+  font-family: 'Nanum Myeongjo', serif;
+  font-size: 18px;
+  text-decoration: underline;
+}
+.main-contact{
+  color: black;
+  font-size: large;
+  text-decoration: none;
+  margin: 2%;
+  font-family: 'Montserrat', serif;
+  font-weight: 200;
+  transition: all .3s ease;
+}
+.main-contact:hover{
+  color:grey;
+  text-decoration:overline;
+  transform: translateY(-3px);
+}
+.mobile-contact {
+  color: black;
+  font-size: x-large;
+  text-decoration: none;
+  margin: 2%;
+  font-weight: 300;
+  transition: all .3s ease;
+}
+.mobile-contact:hover{
+  color:grey;
+  text-decoration:overline;
+  transform: translateY(-3px);
+}
 @media (max-width: 1000px) {
   .deal-title{
     font-weight: bold;
@@ -486,6 +538,12 @@ button:hover{
   .overlay2 > h3{
     font-size: 17px;
   }
+}
+@media (max-width: 700px) {
+  .main-contact{
+    display:none;
+  }
+  
 }
 @media (max-width: 650px) {
   .detail-container{

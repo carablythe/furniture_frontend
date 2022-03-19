@@ -35,8 +35,15 @@ const Products = (props) => {
        .catch((error) => console.error(error))
    }
 
-   const AddToCart = (event) => {
-    axios.post('https://furnituredjango.herokuapp.com/admin/furnitures_api/order/').then(
+   const AddToCart = (product) => {
+    axios.post('https://furnituredjango.herokuapp.com/api/cart',
+    {
+      id: product.id,
+      product: product.name,
+      qty: product.qty,
+      price: product.price,
+      img: product.img
+    }).then(
       (response)=>{
         console.log(response.data)
       })
@@ -76,7 +83,7 @@ return (
             <div className='container' key={product.id}> 
             <Link to={`/${product.id}/`}>
               <div className='image-container'>
-                <img src={product.img}/>
+                <img src={product.imgURL}/>
               </div>
             </Link>
               <div className='contents'>
@@ -120,7 +127,7 @@ return (
               <div className='container' key={product.id}> 
                   <Link to={`/${product.id}/`}>
                     <div className='image-container'>
-                      <img src={product.img}/>
+                      <img src={product.imgURL}/>
                     </div>
                   </Link>
                     <div className='contents'>
@@ -163,7 +170,7 @@ return (
                 <div className='container' key={product.id}> 
                   <Link to={`/${product.id}/`}>
                     <div className='image-container'>
-                      <img src={product.img}/>
+                      <img src={product.imgURL}/>
                     </div>
                   </Link>
                     <div className='contents'>
@@ -207,7 +214,7 @@ return (
                   <div className='container' key={product.id}> 
                   <Link to={`/${product.id}/`}>
                     <div className='image-container'>
-                      <img src={product.img}/>
+                      <img src={product.imgURL}/>
                     </div>
                   </Link>
                     <div className='contents'>
@@ -251,7 +258,7 @@ return (
                     <div className='container' key={product.id}> 
                   <Link to={`/${product.id}/`}>
                     <div className='image-container'>
-                      <img src={product.img}/>
+                      <img src={product.imgURL}/>
                     </div>
                   </Link>
                     <div className='contents'>
@@ -295,7 +302,7 @@ return (
                     <div className='container' key={product.id}> 
                   <Link to={`/${product.id}/`}>
                     <div className='image-container'>
-                      <img src={product.img}/>
+                      <img src={product.imgURL}/>
                     </div>
                   </Link>
                     <div className='contents'>
@@ -339,7 +346,7 @@ return (
                     <div className='container' key={product.id}> 
                   <Link to={`/${product.id}/`}>
                     <div className='image-container'>
-                      <img src={product.img}/>
+                      <img src={product.imgURL}/>
                     </div>
                   </Link>
                     <div className='contents'>
@@ -383,7 +390,7 @@ return (
                     <div className='container' key={product.id}> 
                   <Link to={`/${product.id}/`}>
                     <div className='image-container'>
-                      <img src={product.img}/>
+                      <img src={product.imgURL}/>
                     </div>
                   </Link>
                     <div className='contents'>
@@ -442,7 +449,7 @@ return (
         <div className='container' key={product.id}> 
                   <Link to={`/${product.id}/`}>
                     <div className='image-container'>
-                      <img src={product.img}/>
+                      <img src={product.imgURL}/>
                     </div>
                   </Link>
                     <div className='contents'>
