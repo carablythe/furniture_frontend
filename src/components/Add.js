@@ -15,16 +15,20 @@ const Add = (props) => {
 
   return (
     <>
+      <h3>Please tell us what you think of this Product:</h3>
+      <br />
       <form onSubmit = {handleSubmit}>
+        <label htmlFor="product">Product Name: </label>
+        <input type="text" name="product"
+        value= {review.product} onChange={handleChange}/>
+        <br />
         <label htmlFor="name">Your Name: </label>
         <input type="text" name="name"
-         value={review.name} onChange={handleChange}/>
-        <br />
+         value={review.user} onChange={handleChange}/>
         <br />
         <label htmlFor="rating">Rating(0 through 5: 0 being the lowest, 5 being the highest): </label>
-        <input type="number" name="rating"
+        <input type="number" name="rating" min="0" max="5"
         value={review.rating} onChange={handleChange}/>
-        <br />
         <br />
         <label htmlFor="comment">Review/Comment(s): </label>
         <textarea name="comment" rows="4" cols="50"

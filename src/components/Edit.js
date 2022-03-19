@@ -17,12 +17,14 @@ const Edit = (props) => {
     <>
       <details>
         <summary>Edit Your Review</summary>
+        <br />
+
         <form onSubmit={handleSubmit}>
-          <label htmlFor="name">Your Name: </label>
+          <label htmlFor="name">User Name: </label>
           <input
             type="text"
             name="name"
-            value={review.name}
+            value={review.user}
             onChange={handleChange}
           />
           <br />
