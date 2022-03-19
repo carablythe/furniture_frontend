@@ -11,13 +11,13 @@ const Cart = (props) => {
     const [product, setProduct] = useState([]);
     const [products, setProducts] = useState([]);
 
-    const getProducts = () => {
-       axios.get('https://furnituredjango.herokuapp.com/api/furnitures').then(
-         (response) => setProducts(response.data),
+    const getCartItems = () => {
+       axios.get('https://furnituredjango.herokuapp.com/furnitures_api/order').then(
+         (response) => console.log(response.data),
          (error) => console.error(error))
          .catch((error) => console.error(error))
      }
-    //
+
     // const getCartProducts = (cart) => {
     //     axios.post('https://furnituredjango.herokuapp.com/api/furnitures', {cart}).then(
     //       (response => response.data))
@@ -49,12 +49,14 @@ const Cart = (props) => {
     const TotalPrice = cartItems.reduce((a,c,) => a + c.price * c.qty, 0)
 
     useEffect(() => {
-       getProducts()
+       getCartItems()
+       console.log(cartItems)
     }, [])
 
   return (
     <aside className= "block">
       <h2 className='cart-title'>Cart Items</h2>
+
       <div className='empty-container'> {
         cartItems.length === 0 &&
         <div className='cart-empty'>
@@ -62,6 +64,8 @@ const Cart = (props) => {
         </div>
         }
      </div>
+
+     <>
      {cartItems.map((item) => (
        <div key = {item.id} className = "row">
        <div>{item.name}</div>
@@ -78,6 +82,7 @@ const Cart = (props) => {
       </div>
       </div>
     ))}
+
     {cartItems.length !== 0 && (
       <>
       <hr></hr>
@@ -88,6 +93,8 @@ const Cart = (props) => {
          <button onClick={() => alert('Thank you for your purchase!')}>Checkout</button>
       </>
      )}
+     </>
+
    </aside>
   )
 }

@@ -6,24 +6,27 @@ import HomePage from './pages/Home'
 import Products from './pages/Products'
 import ShowItem from './pages/ShowItem'
 import Cart from './pages/Cart'
+import LoginPage from './pages/Login'
 import Add from './components/Add'
 import Edit from './components/Edit'
 
 const App = () => {
 
-  
+
   return (
     <>
-        <Router>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<HomePage/>}/>
-            <Route path="/products" element={<Products/>}/>
-            <Route path="/ShowItem" element={<ShowItem/>}/>
-            <Route path="/cart" element={<Cart/>} />
-            <Route path="/admin" />
-          </Routes>
-        </Router>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<HomePage/>}/>
+        <Route path="/products" element={<Products/>}/>
+        <Route path="/order" element={<Cart/>} />
+        <Route path="/admin" />
+        <Route path="/:id" element={<ShowItem/>}/>
+        <Route path="/login" element={<LoginPage/>}/>
+      </Routes>
+    </Router>
+
    </>
   )
 }
