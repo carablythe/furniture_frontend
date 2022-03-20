@@ -4,13 +4,12 @@ import {useState, useEffect} from 'react'
 import {Check, Exclamation, Plus, Dash, CartX, ArrowRight} from 'react-bootstrap-icons'
 import {Link} from 'react-router-dom'
 
-
 const Cart = (props) => {
     const [cartItems, setCartItems] = useState([]);
-    
     const [products, setProducts] = useState([]);
     const [quantity, setQuantity] = useState(1)
 
+  
 
     const getCartItems = () => {
        axios.get('https://cozy-django.herokuapp.com/api/carts').then(
@@ -35,11 +34,19 @@ const Cart = (props) => {
     })}
     )
    }
+   
+   const Checkout = (event) => {
+    axios.delete(`https://cozy-django.herokuapp.com/api/carts/`).then(
+    ()=>{ axios.get('https://cozy-django.herokuapp.com/api/carts').then((response)=> {
+      setCartItems(response.data)
+    })}
+    )
+
+   }
 
 
     useEffect(() => {
        getCartItems()
-        Total()
     }, [])
 
     const handleIncrement = (order_quantity) => {
@@ -57,7 +64,6 @@ const Cart = (props) => {
         )
         )
     }
-console.log(cartItems)
   return (
     <>
     <div className= "cart-heading">
@@ -84,7 +90,7 @@ console.log(cartItems)
                   <div className='cart-contents'>
                       <p href={product._id} className='contents-title'>{product.name}</p>
                       <p>Color: {product.color}</p>
-                      <p>Store Quantity {product.quantity}</p>
+                      <p>Store Quantity: {product.quantity}</p>
                       <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'} 
                       {product.availability ? <Check /> : <Exclamation/>}
                       </p>
@@ -97,7 +103,7 @@ console.log(cartItems)
                       </div>
                       <div id='button-container'>
                       <button>Edit</button>
-                      <button onClick={(event)=>{deleteProduct(product)}}>Delete</button>
+                      <button onClick={(event)=>{deleteProduct(product)}}>Remove</button>
                       </div>
                   </div>
                </div>
@@ -113,7 +119,7 @@ console.log(cartItems)
                         <p className='total'>Total ${Total()}</p>
                       </div>
                       <p>By placing this order you agree to the Delivery Terms</p>
-                          <button className='checkout'>Checkout <ArrowRight/></button>
+                          <button onClick={() => setCartItems(0)}className='checkout'>Checkout <ArrowRight/></button>
                   </div>
      </div>
      }
