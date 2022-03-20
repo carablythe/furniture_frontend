@@ -594,6 +594,30 @@ form > input{
   background-color: transparent;
   padding: 0 8px;
 }
+.reviews-container > h4 {
+  font-size: 25px;
+}
+.review > h5{
+  font-size: 15px;
+}
+.review > button {
+  font-size: 18px;
+}
+b {
+  font-size: 18px;
+}
+.comment-section{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+  margin: 3vh auto 5vh auto;
+}
+.comment-section > label {
+  align-self: flex-start;
+  margin: 2vh 0 1vh 3vw;
+}
 @media (max-width: 1000px) {
   .deal-title{
     font-weight: bold;
