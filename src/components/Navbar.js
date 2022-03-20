@@ -31,8 +31,8 @@ const Navbar = () => {
                         <NavbarLink to="/">Home</NavbarLink>
                         <NavbarLink to="/">About</NavbarLink>
                         <NavbarLink to="/products">Products</NavbarLink>
-                        <NavbarLink to="/">Contact</NavbarLink>
-                        <NavbarLink to="/order/"><ion-icon name="cart-outline"></ion-icon></NavbarLink>
+                        <a className="main-contact" href="/#contact">Contact</a>
+                        <NavbarLink to="/cart"><ion-icon name="cart-outline"></ion-icon></NavbarLink>
                         <NavbarHamburger onClick={() => {setExtendNav((curr) => !curr)}}> {extendNav ? <> &#10005; </> : <> &#8801; </>} </NavbarHamburger>
                     </RightContainer>
                 </NavbarInnerContainer>
@@ -41,8 +41,8 @@ const Navbar = () => {
                         <NavbarLinkExtend to="/">Home</NavbarLinkExtend>
                         <NavbarLinkExtend to="/">About</NavbarLinkExtend>
                         <NavbarLinkExtend to="/products">Products</NavbarLinkExtend>
-                        <NavbarLinkExtend to="/">Contact</NavbarLinkExtend>
-                        <NavbarLinkExtend to="/order/"><ion-icon name="cart-outline"></ion-icon></NavbarLinkExtend>
+                        <a className="mobile-contact" href="/#contact">Contact</a>
+                        <NavbarLinkExtend to="/cart"><ion-icon name="cart-outline"></ion-icon></NavbarLinkExtend>
                 </NavbarExtendedContainer> : ''
                 }
             </NavbarContainer>
