@@ -13,32 +13,37 @@ const Edit = (props) => {
     props.handleUpdate(review)
   }
 
+
+// unused in return below:
+//
+//
+//         <form onSubmit={handleSubmit}>
+//           <label htmlFor="name">Customer Name: </label>
+//           <input
+//             type="text"
+//             name="name"
+//             value={review.user}
+//             onChange={handleChange}
+//           />
+
   return (
     <>
       <details>
         <summary>Edit Your Review</summary>
-        <br />
-
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="name">User Name: </label>
-          <input
-            type="text"
-            name="name"
-            value={review.user}
-            onChange={handleChange}
-          />
-          <br />
-          <br />
+        <br/>
+        <br/>
+          <form onSubmit={handleSubmit}>
           <label htmlFor="rating">Rating(0-5):</label>
           <input
             type="number"
             name="rating"
+            min="0" max="5"
             value={review.rating}
             onChange={handleChange}
           />
           <br />
           <br />
-          <label htmlFor="comment">Review/Comment(s): </label>
+          <label htmlFor="comment">Comment: </label>
           <textarea
             name="comment"
             rows="4"

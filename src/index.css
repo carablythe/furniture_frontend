@@ -565,8 +565,6 @@ align-items: center;
 justify-content: center;
 flex-wrap: wrap;
 }
-
-
 .image-container3{
   width: 100%;
 }
@@ -584,6 +582,17 @@ flex-wrap: wrap;
   width: 80%;
   margin: 0 2vw;
   min-width: 350px;
+}
+.reviews-container{
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'Nanum Myeongjo', serif;
+}
+form > input{
+  border: none;
+  border-bottom: 1px solid grey;
+  background-color: transparent;
+  padding: 0 8px;
 }
 @media (max-width: 1000px) {
   .deal-title{

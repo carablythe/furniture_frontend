@@ -19,7 +19,7 @@ const HomePage = () => {
     const [trendingFurniture, setTrendingFurniture] = useState([])
 
 const getTrendingFurniture = () => {
-    axios.get('http://furnituredjango.herokuapp.com/api/furnitures')
+    axios.get('https://cozy-django.herokuapp.com/api/furnitures')
     .then((response)=>{
         setTrendingFurniture(response.data)
     })
