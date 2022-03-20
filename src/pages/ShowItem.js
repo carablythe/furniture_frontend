@@ -14,9 +14,9 @@ const ShowItem = (props) => {
   const [review, setReview] = useState([])
   // const [newRating, setNewRating] = useState('');
 
-  const { id } = useParams()
+ const { id } = useParams()
 
-  const getProduct = () => {
+ const getProduct = () => {
      axios.get(`https://cozy-django.herokuapp.com/api/furnitures/${id}`).then(
        (response) => setProduct(response.data),
        (error) => console.error(error))
@@ -39,7 +39,6 @@ const ShowItem = (props) => {
     })
     console.log(AddToCart())
    }
-  
 
   const handleIncrement = (event) => {
     setQuantity(quantity + 1)
@@ -50,7 +49,6 @@ const ShowItem = (props) => {
     setQuantity(quantity - 1)
     console.log(quantity);
     }
-
 
 
    const getReviews = () => {
@@ -113,10 +111,10 @@ const ShowItem = (props) => {
                   <img src={product.imgURL}/>
               </div>
               </div>
-                    
+
       <div className='contents3'>
             <div className='contents-main3'>
-      
+
               <p>Color: {product.color}</p>
                <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'}
               {product.availability ? <Check /> : <Exclamation/>}
@@ -128,11 +126,11 @@ const ShowItem = (props) => {
                 </div>
                  <p className='price'><b>${product.price}</b></p>
                <button id="add-cart" onClick={()=> AddToCart(product)}> Add to Cart</button>
+              </div>
             </div>
-          </div>
-       </div>
-                          <br/>
-                         <br/>
+             </div>
+                <br/>
+                  <br/>
                       <div className='reviews-container'>
                       <h4>Customer Reviews of this Product:</h4>
                        <br/>
@@ -160,10 +158,10 @@ const ShowItem = (props) => {
                               )
                          })}
                         <br/>
-                         <div><Add handleCreate = {handleCreate}/></div>
+                         <div><Add handleCreate = {handleCreate} id = {id}/></div>
                       </div>
                       </div>
-         
+
       </>
     )
  }

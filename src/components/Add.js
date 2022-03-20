@@ -17,11 +17,11 @@ const Add = (props) => {
   return (
     <>
       <h3>Please tell us what you think of this product!</h3>
-      <br />
       <form onSubmit = {handleSubmit}>
-        <label htmlFor="product">Product ID Number (see above): </label>
+        <label htmlFor="product">Product ID: </label>
         <input type="number" name="product" min="1" max="99"
-        value= {review.product} onChange={handleChange}/>
+        value= {props.id} onChange={handleChange}/>
+        <br />
         <br />
         <label htmlFor="rating">Rating(0 through 5: 0 being the lowest, 5 being the highest): </label>
         <input type="number" name="rating" min="0" max="5"
