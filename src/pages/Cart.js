@@ -24,7 +24,7 @@ const Cart = (props) => {
     const Total = (sum) => {
       sum = 0;
       for(let i = 0; i < cartItems.length; i++)
-      sum += cartItems[i].price
+      sum += cartItems[i].price * cartItems[i].orderQuantity
       return sum
       }
     
@@ -39,18 +39,21 @@ const Cart = (props) => {
 
     useEffect(() => {
        getCartItems()
-
+        Total()
     }, [])
 
-    const handleIncrement = (order_quantity, item) => {
-      console.log(item);
-       let quantity = item.orderQuanity + 1
-      console.log(quantity);
+    const handleIncrement = (order_quantity) => {
+      setCartItems(cartItems =>
+        cartItems.map((product)=>
+        order_quantity === product.name ? {...product, orderQuantity: product.orderQuantity + (product.orderQuantity < 10 ? 1:0 ) } : product
+        )
+      )
+      
     }
     const handleDecrement = (order_quantity) => {
       setCartItems(cartItems =>
         cartItems.map((product)=>
-        order_quantity === product.id ? {...product, orderQuanity: product.orderQuanity - 1 } : product
+        order_quantity === product.name ? {...product, orderQuantity: product.orderQuantity - (product.orderQuantity > 1  ? 1:0 ) } : product
         )
         )
     }
@@ -86,9 +89,9 @@ console.log(cartItems)
                       {product.availability ? <Check /> : <Exclamation/>}
                       </p>
                       <div className='quantity'>
-                      <button ><Plus/></button>
+                      <button onClick={() => handleIncrement(product.name)}><Plus/></button>
                       <div>{product.orderQuantity}</div>
-                      <button onClick={() => handleDecrement(product.name, product)}><Dash/></button>
+                      <button onClick={() => handleDecrement(product.name)}><Dash/></button>
                       </div>
                       <p className='price'><b>${product.price}</b></p>
                       </div>
@@ -96,10 +99,8 @@ console.log(cartItems)
                       <button>Edit</button>
                       <button onClick={(event)=>{deleteProduct(product)}}>Delete</button>
                       </div>
-                </div>
-              </div>
-
-
+                  </div>
+               </div>
         </div>
      )})}
      </div>
