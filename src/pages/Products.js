@@ -77,24 +77,27 @@ const Products = (props) => {
 
 
   const getProducts = () => {
-     axios.get('https://furnituredjango.herokuapp.com/api/furnitures').then(
+     axios.get('https://cozy-django.herokuapp.com/api/furnitures').then(
        (response) => setProducts(response.data),
        (error) => console.error(error))
        .catch((error) => console.error(error))
    }
 
    const AddToCart = (product) => {
-    axios.post('https://furnituredjango.herokuapp.com/api/cart',
-    {
-      id: product.id,
-      product: product.name,
-      qty: product.qty,
-      price: product.price,
-      img: product.img
-    }).then(
-      (response)=>{
-        console.log(response.data)
-      })
+    axios({
+      method: 'post',
+      url: '/api/carts',
+      baseURL: 'https://cozy-django.herokuapp.com',
+      data: {
+        id: product.id,
+        qty: 1,
+        price: product.price,
+        img: product.imgURL,
+        user: 1,
+        product: 1
+      }
+    })
+    console.log(AddToCart())
    }
 
   useEffect(() => {
