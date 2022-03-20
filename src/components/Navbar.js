@@ -12,6 +12,7 @@ import {
     NavbarLinkExtend
 } from './Navbar.style.js'
 import Logo from '../images/Cozy.png'
+import {useDispatch, useSelector} from 'react-redux'
 
 const Navbar = () => {
     const [extendNav, setExtendNav] = useState(false)
