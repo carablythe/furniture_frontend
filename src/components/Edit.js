@@ -14,18 +14,6 @@ const Edit = (props) => {
   }
 
 
-// unused in return below:
-//
-//
-//         <form onSubmit={handleSubmit}>
-//           <label htmlFor="name">Customer Name: </label>
-//           <input
-//             type="text"
-//             name="name"
-//             value={review.user}
-//             onChange={handleChange}
-//           />
-
   return (
     <>
       <details>
@@ -60,3 +48,17 @@ const Edit = (props) => {
 }
 
 export default Edit
+
+
+
+// unused in return above:
+//
+//
+//         <form onSubmit={handleSubmit}>
+//           <label htmlFor="name">Customer Name: </label>
+//           <input
+//             type="text"
+//             name="name"
+//             value={review.user}
+//             onChange={handleChange}
+//           />
