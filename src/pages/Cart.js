@@ -4,13 +4,12 @@ import {useState, useEffect} from 'react'
 import {Check, Exclamation, Plus, Dash, CartX, ArrowRight} from 'react-bootstrap-icons'
 import {Link} from 'react-router-dom'
 
-
 const Cart = (props) => {
     const [cartItems, setCartItems] = useState([]);
-    const [product, setProduct] = useState([]);
     const [products, setProducts] = useState([]);
     const [quantity, setQuantity] = useState(1)
 
+  
 
     const getCartItems = () => {
        axios.get('https://cozy-django.herokuapp.com/api/carts').then(
@@ -19,27 +18,15 @@ const Cart = (props) => {
          .catch((error) => console.error(error))
      }
 
-     const handleIncrement = (event) => {
-      setQuantity(quantity + 1)
-      console.log(quantity);
-    }
-    const handleDecrement = (event) => {
-      setQuantity(quantity - 1)
-      console.log(quantity);
-    }
+    
 
-   // const Total = () => {
-   //   return cartItems.reduce((sum, total)=> sum + total.price, '')
-   // }
-
-   const Total = (sum) => {
-     sum = 0;
-     for(let i = 0; i < cartItems.length; i++)
-     sum += cartItems[i].price
-     return sum
-     }
-
-
+    const Total = (sum) => {
+      sum = 0;
+      for(let i = 0; i < cartItems.length; i++)
+      sum += cartItems[i].price * cartItems[i].orderQuantity
+      return sum
+      }
+    
    const deleteProduct = (product) => {
     axios.delete(`https://cozy-django.herokuapp.com/api/carts/${product.id}`).then(
     ()=>{ axios.get('https://cozy-django.herokuapp.com/api/carts').then((response)=> {
@@ -47,13 +34,36 @@ const Cart = (props) => {
     })}
     )
    }
+   
+   const Checkout = (event) => {
+    axios.delete(`https://cozy-django.herokuapp.com/api/carts/`).then(
+    ()=>{ axios.get('https://cozy-django.herokuapp.com/api/carts').then((response)=> {
+      setCartItems(response.data)
+    })}
+    )
+
+   }
 
 
     useEffect(() => {
        getCartItems()
-
     }, [])
-console.log(cartItems)
+
+    const handleIncrement = (order_quantity) => {
+      setCartItems(cartItems =>
+        cartItems.map((product)=>
+        order_quantity === product.name ? {...product, orderQuantity: product.orderQuantity + (product.orderQuantity < 10 ? 1:0 ) } : product
+        )
+      )
+      
+    }
+    const handleDecrement = (order_quantity) => {
+      setCartItems(cartItems =>
+        cartItems.map((product)=>
+        order_quantity === product.name ? {...product, orderQuantity: product.orderQuantity - (product.orderQuantity > 1  ? 1:0 ) } : product
+        )
+        )
+    }
   return (
     <>
     <div className= "cart-heading">
@@ -73,31 +83,30 @@ console.log(cartItems)
       return(
         <div className='container3'>
         <div className='image-container2'>
-            <img src={product.img}/>
+            <img src={product.imgURL}/>
         </div>
               <div className='contents2'>
                 <div className='contents-main2' key={product.id}>
                   <div className='cart-contents'>
-                      <a href={product._id} className='contents-title'>{product.name}</a>
+                      <p href={product._id} className='contents-title'>{product.name}</p>
                       <p>Color: {product.color}</p>
-                      <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'}
+                      <p>Store Quantity: {product.quantity}</p>
+                      <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'} 
                       {product.availability ? <Check /> : <Exclamation/>}
                       </p>
                       <div className='quantity'>
-                      <button onClick={handleIncrement}><Plus/></button>
-                      <div>{product.qty}</div>
-                      <button onClick={handleDecrement}><Dash/></button>
+                      <button onClick={() => handleIncrement(product.name)}><Plus/></button>
+                      <div>{product.orderQuantity}</div>
+                      <button onClick={() => handleDecrement(product.name)}><Dash/></button>
                       </div>
                       <p className='price'><b>${product.price}</b></p>
                       </div>
                       <div id='button-container'>
                       <button>Edit</button>
-                      <button onClick={(event)=>{deleteProduct(product)}}>Delete</button>
+                      <button onClick={(event)=>{deleteProduct(product)}}>Remove</button>
                       </div>
-                </div>
-              </div>
-
-
+                  </div>
+               </div>
         </div>
      )})}
      </div>
@@ -110,7 +119,7 @@ console.log(cartItems)
                         <p className='total'>Total ${Total()}</p>
                       </div>
                       <p>By placing this order you agree to the Delivery Terms</p>
-                          <button className='checkout'>Checkout <ArrowRight/></button>
+                          <button onClick={() => setCartItems(0)}className='checkout'>Checkout <ArrowRight/></button>
                   </div>
      </div>
      }

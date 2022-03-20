@@ -11,9 +11,7 @@ import emailSec from '../images/extra3.jpg'
 import contact from '../images/contact1.jpg'
 import { Truck, Flower1, Telephone, Globe, Facebook, Linkedin, Twitter, Instagram, Check, Exclamation, CartCheck} from 'react-bootstrap-icons'
 import axios from 'axios'
-import photo from '../images/6-drawer-dresser.jpg'
 import {Link} from 'react-router-dom'
-import AddToCart from './Cart'
 
 const HomePage = () => {
     const [trendingFurniture, setTrendingFurniture] = useState([])
@@ -24,6 +22,29 @@ const getTrendingFurniture = () => {
         setTrendingFurniture(response.data)
     })
 }
+
+const AddToCart = (product) => {
+    axios({
+      method: 'post',
+      url: '/api/carts',
+      baseURL: 'https://cozy-django.herokuapp.com',
+      data: {
+        user: null,
+        img: null,
+        imgURL: product.imgURL,
+        price: product.price,
+        orderQuantity: product.orderQuantity,
+        quantity: product.quantity,
+        availability: product.availability,
+        color: product.color,
+        category: product.category,
+        name: product.name
+      }
+    })
+    console.log(AddToCart())
+   }
+
+
 useEffect(()=>{
     getTrendingFurniture()
 })

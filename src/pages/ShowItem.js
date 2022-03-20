@@ -29,12 +29,16 @@ const ShowItem = (props) => {
       url: '/api/carts',
       baseURL: 'https://cozy-django.herokuapp.com',
       data: {
-        id: product.id,
-        qty: 1,
+        user: null,
+        img: null,
+        imgURL: product.imgURL,
         price: product.price,
-        img: product.imgURL,
-        user: 1,
-        product: 1
+        orderQuantity: product.orderQuantity,
+        quantity: product.quantity,
+        availability: product.availability,
+        color: product.color,
+        category: product.category,
+        name: product.name
       }
     })
     console.log(AddToCart())
@@ -132,7 +136,7 @@ const ShowItem = (props) => {
                 <br/>
                   <br/>
                       <div className='reviews-container'>
-                      <h4>Customer Reviews of this Product:</h4>
+                      <h4 className='trending-title'><span>Customer Reviews :</span></h4>
                        <br/>
                        <div className = "reviews">
                         {reviews.filter((review) => {
@@ -143,9 +147,9 @@ const ShowItem = (props) => {
                           map((review) => {
                          return (
                           <div className = "review" key = {review.id}>
-                          <h5>Posted by Anonymous User {review.user}: </h5>
-                          <h5>Rating: {review.rating} /5</h5>
-                          <h5>Comment: {review.comment} </h5>
+                          <h5>Posted by Anonymous {review.user}: </h5>
+                          <h5><b>Rating:</b> {review.rating} /5</h5>
+                          <h5><b>Comment:</b> {review.comment} </h5>
                           <br/>
                           <Edit handleUpdate={handleUpdate} review = {review}/>
                           <br/>
