@@ -134,7 +134,7 @@ const ShowItem = (props) => {
                           <br/>
                          <br/>
                       <div className='reviews-container'>
-                      <h4>Customer Reviews of this Product:</h4>
+                      <h4 className='trending-title'><span>Customer Reviews :</span></h4>
                        <br/>
                        <div className = "reviews">
                         {reviews.filter((review) => {
@@ -145,9 +145,9 @@ const ShowItem = (props) => {
                           map((review) => {
                          return (
                           <div className = "review" key = {review.id}>
-                          <h5>Posted by Anonymous User {review.user}: </h5>
-                          <h5>Rating: {review.rating} /5</h5>
-                          <h5>Comment: {review.comment} </h5>
+                          <h5>Posted by Anonymous {review.user}: </h5>
+                          <h5><b>Rating:</b> {review.rating} /5</h5>
+                          <h5><b>Comment:</b> {review.comment} </h5>
                           <br/>
                           <Edit handleUpdate={handleUpdate} review = {review}/>
                           <br/>

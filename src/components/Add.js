@@ -23,14 +23,16 @@ const Add = (props) => {
         <input type="number" name="product" min="1" max="99"
         value= {review.product} onChange={handleChange}/>
         <br />
-        <label htmlFor="rating">Rating(0 through 5: 0 being the lowest, 5 being the highest): </label>
+        <label htmlFor="rating">Rating(0 - 5 : 0 lowest, 5 highest): </label>
         <input type="number" name="rating" min="0" max="5"
         value={review.rating} onChange={handleChange}/>
         <br />
-        <label htmlFor="comment">Comment: </label>
-        <textarea name="comment" rows="4" cols="50"
+        <div className='comment-section'>
+          <label htmlFor="comment">Comment: </label>
+          <textarea name="comment" rows="4" cols="50"
          value={review.comment} onChange={handleChange}/>
-        <input type="submit"/>
+           <input type="submit"/>
+        </div>
       </form>
     </>
   )

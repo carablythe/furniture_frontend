@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom'
 
 const Cart = (props) => {
     const [cartItems, setCartItems] = useState([]);
-    const [product, setProduct] = useState([]);
+    
     const [products, setProducts] = useState([]);
     const [quantity, setQuantity] = useState(1)
 
@@ -22,18 +22,14 @@ const Cart = (props) => {
          
      }
 
-     const handleIncrement = (event) => {
-      setQuantity(quantity + 1)
-      console.log(quantity);
-    }
-    const handleDecrement = (event) => {
-      setQuantity(quantity - 1)
-      console.log(quantity);
-    }
+    
 
-   const Total = () => {
-     return cartItems.reduce((sum, total)=> sum + total.price, '')
-   }
+    const Total = (sum) => {
+      sum = 0;
+      for(let i = 0; i < cartItems.length; i++)
+      sum += cartItems[i].price
+      return sum
+      }
     
    const deleteProduct = (product) => {
     axios.delete(`https://cozy-django.herokuapp.com/api/carts/${product.id}`).then(
@@ -77,6 +73,19 @@ const Cart = (props) => {
        getCartItems()
        
     }, [])
+
+    const handleIncrement = (order_quantity, item) => {
+      console.log(item);
+       let quantity = item.orderQuanity + 1
+      console.log(quantity);
+    }
+    const handleDecrement = (order_quantity) => {
+      setCartItems(cartItems =>
+        cartItems.map((product)=>
+        order_quantity === product.id ? {...product, orderQuanity: product.orderQuanity - 1 } : product
+        )
+        )
+    }
 console.log(cartItems)
   return (
     <>
@@ -97,20 +106,21 @@ console.log(cartItems)
       return(
         <div className='container3'>
         <div className='image-container2'>
-            <img src={product.img}/>
+            <img src={product.imgURL}/>
         </div>
               <div className='contents2'>
                 <div className='contents-main2' key={product.id}>
                   <div className='cart-contents'>
-                      <a href={product._id} className='contents-title'>{product.name}</a>
+                      <p href={product._id} className='contents-title'>{product.name}</p>
                       <p>Color: {product.color}</p>
+                      <p>Store Quantity {product.quantity}</p>
                       <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'} 
                       {product.availability ? <Check /> : <Exclamation/>}
                       </p>
                       <div className='quantity'>
-                      <button onClick={handleIncrement}><Plus/></button>
-                      <div>{product.qty}</div>
-                      <button onClick={handleDecrement}><Dash/></button>
+                      <button ><Plus/></button>
+                      <div>{product.orderQuantity}</div>
+                      <button onClick={() => handleDecrement(product.name, product)}><Dash/></button>
                       </div>
                       <p className='price'><b>${product.price}</b></p>
                       </div>

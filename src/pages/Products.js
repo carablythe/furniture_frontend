@@ -89,12 +89,16 @@ const Products = (props) => {
       url: '/api/carts',
       baseURL: 'https://cozy-django.herokuapp.com',
       data: {
-        id: product.id,
-        qty: 1,
+        user: null,
+        img: null,
+        imgURL: product.imgURL,
         price: product.price,
-        img: product.imgURL,
-        user: 1,
-        product: 1
+        orderQuantity: product.orderQuantity,
+        quantity: product.quantity,
+        availability: product.availability,
+        color: product.color,
+        category: product.category,
+        name: product.name
       }
     })
     console.log(AddToCart())
@@ -103,7 +107,7 @@ const Products = (props) => {
   useEffect(() => {
   getProducts()
  }, [])
-
+console.log(products)
 
 return (
   <>
