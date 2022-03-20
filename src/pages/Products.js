@@ -77,17 +77,27 @@ const Products = (props) => {
 
 
   const getProducts = () => {
-     axios.get('https://furnituredjango.herokuapp.com/api/furnitures').then(
+     axios.get('https://cozy-django.herokuapp.com/api/furnitures').then(
        (response) => setProducts(response.data),
        (error) => console.error(error))
        .catch((error) => console.error(error))
    }
 
-   const AddToCart = (event) => {
-    axios.post('https://furnituredjango.herokuapp.com/admin/furnitures_api/order/').then(
-      (response)=>{
-        console.log(response.data)
-      })
+   const AddToCart = (product) => {
+    axios({
+      method: 'post',
+      url: '/api/carts',
+      baseURL: 'https://cozy-django.herokuapp.com',
+      data: {
+        id: product.id,
+        qty: 1,
+        price: product.price,
+        img: product.imgURL,
+        user: 1,
+        product: 1
+      }
+    })
+    console.log(AddToCart())
    }
 
   useEffect(() => {
@@ -124,7 +134,7 @@ return (
             <div className='container' key={product.id}>
             <Link to={`/${product.id}/`}>
               <div className='image-container'>
-                <img src={product.img}/>
+                <img src={product.imgURL}/>
               </div>
             </Link>
               <div className='contents'>
@@ -168,7 +178,7 @@ return (
               <div className='container' key={product.id}>
                   <Link to={`/${product.id}/`}>
                     <div className='image-container'>
-                      <img src={product.img}/>
+                      <img src={product.imgURL}/>
                     </div>
                   </Link>
                     <div className='contents'>
@@ -211,7 +221,7 @@ return (
                 <div className='container' key={product.id}>
                   <Link to={`/${product.id}/`}>
                     <div className='image-container'>
-                      <img src={product.img}/>
+                      <img src={product.imgURL}/>
                     </div>
                   </Link>
                     <div className='contents'>
@@ -255,7 +265,7 @@ return (
                   <div className='container' key={product.id}>
                   <Link to={`/${product.id}/`}>
                     <div className='image-container'>
-                      <img src={product.img}/>
+                      <img src={product.imgURL}/>
                     </div>
                   </Link>
                     <div className='contents'>
@@ -299,7 +309,7 @@ return (
                     <div className='container' key={product.id}>
                   <Link to={`/${product.id}/`}>
                     <div className='image-container'>
-                      <img src={product.img}/>
+                      <img src={product.imgURL}/>
                     </div>
                   </Link>
                     <div className='contents'>
@@ -343,7 +353,7 @@ return (
                     <div className='container' key={product.id}>
                   <Link to={`/${product.id}/`}>
                     <div className='image-container'>
-                      <img src={product.img}/>
+                      <img src={product.imgURL}/>
                     </div>
                   </Link>
                     <div className='contents'>
@@ -387,7 +397,7 @@ return (
                     <div className='container' key={product.id}>
                   <Link to={`/${product.id}/`}>
                     <div className='image-container'>
-                      <img src={product.img}/>
+                      <img src={product.imgURL}/>
                     </div>
                   </Link>
                     <div className='contents'>
@@ -431,7 +441,7 @@ return (
                     <div className='container' key={product.id}>
                   <Link to={`/${product.id}/`}>
                     <div className='image-container'>
-                      <img src={product.img}/>
+                      <img src={product.imgURL}/>
                     </div>
                   </Link>
                     <div className='contents'>
@@ -490,7 +500,7 @@ return (
         <div className='container' key={product.id}>
                   <Link to={`/${product.id}/`}>
                     <div className='image-container'>
-                      <img src={product.img}/>
+                      <img src={product.imgURL}/>
                     </div>
                   </Link>
                     <div className='contents'>

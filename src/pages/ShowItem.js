@@ -17,13 +17,31 @@ const ShowItem = (props) => {
   const { id } = useParams()
 
   const getProduct = () => {
-     axios.get(`https://furnituredjango.herokuapp.com/api/furnitures/${id}`).then(
+     axios.get(`https://cozy-django.herokuapp.com/api/furnitures/${id}`).then(
        (response) => setProduct(response.data),
        (error) => console.error(error))
        .catch((error) => console.error(error))
    }
 
-   const handleIncrement = (event) => {
+   const AddToCart = (product) => {
+    axios({
+      method: 'post',
+      url: '/api/carts',
+      baseURL: 'https://cozy-django.herokuapp.com',
+      data: {
+        id: product.id,
+        qty: 1,
+        price: product.price,
+        img: product.imgURL,
+        user: 1,
+        product: 1
+      }
+    })
+    console.log(AddToCart())
+   }
+  
+
+  const handleIncrement = (event) => {
     setQuantity(quantity + 1)
     console.log(quantity);
     }
@@ -88,28 +106,34 @@ const ShowItem = (props) => {
 
   return (
     <>
-          <div className='container2'>
-              <div className='image-container2'>
-                  <img src={product.img}/>
+          <div className='container4'>
+            <div className="title-and-img">
+                <p className='contents-title'><b>{product.name}</b></p>
+              <div className='image-container3'>
+                  <img src={product.imgURL}/>
               </div>
-                    <div className='contents2'>
-                    <div className='contents-main2'>
-                          <a href={product._id} className='contents-title'>{product.name}</a>
-                          <p>Product ID: {product.id}</p>
-                          <p>Color: {product.color}</p>
-                          <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'}
-                          {product.availability ? <Check /> : <Exclamation/>}
-                          </p>
-                          <div className='quantity'>
-                          <button onClick={handleIncrement}><Plus/></button>
-                          <div>{product.quantity > 0 ? quantity : ''} </div>
-                          <button onClick={handleDecrement}><Dash/></button>
-                          </div>
-                          <p className='price'><b>${product.price}</b></p>
-                          <button id="add-cart" onClick={()=> AddToCart(product)}> Add to Cart</button>
-                    </div>
+              </div>
+                    
+      <div className='contents3'>
+            <div className='contents-main3'>
+      
+              <p>Color: {product.color}</p>
+               <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'}
+              {product.availability ? <Check /> : <Exclamation/>}
+               </p>
+              <div className='quantity'>
+                <button onClick={handleIncrement}><Plus/></button>
+              <div>{product.quantity > 0 ? quantity : ''} </div>
+                <button onClick={handleDecrement}><Dash/></button>
+                </div>
+                 <p className='price'><b>${product.price}</b></p>
+               <button id="add-cart" onClick={()=> AddToCart(product)}> Add to Cart</button>
+            </div>
+          </div>
+       </div>
                           <br/>
                          <br/>
+                      <div className='reviews-container'>
                       <h4>Customer Reviews of this Product:</h4>
                        <br/>
                        <div className = "reviews">
@@ -138,8 +162,8 @@ const ShowItem = (props) => {
                         <br/>
                          <div><Add handleCreate = {handleCreate}/></div>
                       </div>
-                </div>
-          </div>
+                      </div>
+         
       </>
     )
  }

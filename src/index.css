@@ -410,19 +410,29 @@ button:hover{
   margin: 10vh auto;
 }
 .image-container2{
-  width: 50%;
+  width: 20%;
+  min-width: 300px;
+  margin-bottom: 2vh;
 }
 .image-container2 > img {
   width: 100%;
 }
 .contents2 {
-  width: 40%;
+ 
 }
 .contents-main2{
   display: flex;
-  flex-direction: column;
-  margin-left: 3vw;
+  margin: 0 2vw;
   font-family: 'Nanum Myeongjo', serif;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+}
+.cart-contents {
+  width: 85%;
+}
+.contents-main2 > p {
+  margin-bottom: 0;
 }
 .contents-main2 > .contents-title {
   color: black;
@@ -433,16 +443,156 @@ button:hover{
   align-items: center;
 }
 .quantity > button {
-  margin: 0 1vw 1vw 1vw;
+  margin: 0 .5vw .5vw.5vw;
 }
 .quantity > div {
-  margin: 0 1vw 1vw 1vw;
+  margin: 0 .5vw .5vw .5vw;
 }
 #add-cart {
   border: 1px solid grey;
   padding: 8px;
-  width: 50%;
+  width: 15rem;
   align-self: flex-end;
+}
+.cart-heading{
+  display: flex;
+  align-items: center;
+}
+.container3 {
+  width: 100%;
+  display: flex;
+  margin: 5vh auto;
+  border-bottom: 1px solid rgb(171, 171, 171);
+  flex-wrap: wrap;
+}
+#button-container{
+  min-width: 190px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1vh;
+}
+#button-container > button {
+  font-size: 18px;
+  text-decoration: underline;
+  margin: 0 1vw;
+}
+.shop-button {
+  font-family: 'Nanum Myeongjo', serif;
+  font-size: 18px;
+  text-decoration: underline;
+  color: grey;
+}
+.main-contact{
+  color: black;
+  font-size: large;
+  text-decoration: none;
+  margin: 2%;
+  font-family: 'Montserrat', serif;
+  font-weight: 200;
+  transition: all .3s ease;
+}
+.main-contact:hover{
+  color:grey;
+  text-decoration:overline;
+  transform: translateY(-3px);
+}
+.mobile-contact {
+  color: black;
+  font-size: x-large;
+  text-decoration: none;
+  margin: 2%;
+  font-weight: 300;
+  transition: all .3s ease;
+}
+.mobile-contact:hover{
+  color:grey;
+  text-decoration:overline;
+  transform: translateY(-3px);
+}
+.checkout{
+  border: 1px solid grey;
+  color: white;
+  padding: 10px 10px;
+  width: 80%;
+  background: rgb(120, 87, 78);
+  border: none;
+  font-family: 'Nanum Myeongjo', serif;
+}
+.cart-heading > p {
+  margin-right: 20px;
+  font-family: 'Nanum Myeongjo', serif;
+}
+.checkout-summary {
+  width: 350px;
+  background-color: rgb(230, 230, 230);
+  padding: 20px;
+  font-family: 'Nanum Myeongjo', serif;
+  margin-bottom: 3vh;
+}
+.order-details {
+  background: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  margin: 2vh 0;
+  box-shadow: 0 3px 10px rgb(100 100 100 /.1);
+}
+.order-details > .total {
+  border-bottom: none;
+}
+.order-details > p {
+  border-bottom: 1px solid grey;
+  padding: 10px;
+  width: 90%;
+}
+.cart-and-total{
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.cart-items{
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.container4 {
+width: 90%;
+margin: 15vh auto;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-wrap: wrap;
+}
+.image-container3{
+  width: 100%;
+}
+.title-and-img > p {
+  font-size: 25px;
+  font-family: 'Nanum Myeongjo', serif;
+}
+.contents3{
+  width: 20%;
+  min-width: 300px;
+  font-family: 'Nanum Myeongjo', serif;
+  font-size: 20px;
+}
+.contents-main3{
+  width: 80%;
+  margin: 0 2vw;
+  min-width: 350px;
+}
+.reviews-container{
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'Nanum Myeongjo', serif;
+}
+form > input{
+  border: none;
+  border-bottom: 1px solid grey;
+  background-color: transparent;
+  padding: 0 8px;
 }
 @media (max-width: 1000px) {
   .deal-title{
@@ -473,6 +623,28 @@ button:hover{
   .contents-main > .contents-title{
     font-size: 16px;
   }
+  .cart-items{
+    width: 100%;
+  }
+}
+@media (max-width: 820px) {
+  .container4 {
+    width: 100%;
+    }
+  .title-and-img{
+  width: 100%;
+  overflow: hidden;
+}
+.title-and-img > img {
+  width: 100%;
+}
+.contents3 {
+  width: 100vw;
+
+}
+.contents-main3{
+ 
+}
 }
 
 @media (max-width: 750px) {
@@ -486,6 +658,30 @@ button:hover{
   .overlay2 > h3{
     font-size: 17px;
   }
+  .image-container2{
+    width: 100%;
+  }
+  .contents2{
+    width: 100%;
+  }
+  .cart-items {
+    width: 95%;
+  }
+  .cart-heading{
+    flex-direction: column;
+   }
+   .cart-title {
+     margin-bottom: 0;
+   }
+   .cart-heading > p {
+     margin: 0;
+   }
+}
+@media (max-width: 700px) {
+  .main-contact{
+    display:none;
+  }
+  
 }
 @media (max-width: 650px) {
   .detail-container{
@@ -545,4 +741,5 @@ button:hover{
   .contents-main > .contents-title{
     font-size: 15px;
   }
+ 
 }
