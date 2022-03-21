@@ -4,7 +4,7 @@ import {Link} from "react-router-dom"
 export const NavbarContainer = styled.nav `
     width: 100%;
     background: whitesmoke;
-    height: ${(props) => (props.extendNav ? "100vh" : "90px")};
+    height: ${(props) => (props.extendNav ? "50vh" : "90px")};
     display: flex;
     flex-direction: column;
 
@@ -16,8 +16,8 @@ export const NavbarContainer = styled.nav `
 export const LeftContainer = styled.div `
     flex: 30%;
     display: flex;
-    justifty-content: flex-start;
-    padding-left: 50px;
+    justify-content: flex-start;
+    padding-left: 40px;
 `
 
 export const RightContainer = styled.div `
@@ -45,14 +45,20 @@ export const NavbarLink = styled(Link)`
     margin: 2%;
     font-family: 'Montserrat', serif;
     font-weight: 200;
+    transition: all .3s ease;
 
     @media (max-width: 700px) {
         display:none;
     }
+    &:hover{
+        color:grey;
+        text-decoration:overline;
+        transform: translateY(-3px);
+    }
 `
 export const NavbarLogo = styled.img `
     margin: 5px;
-    width: 110px;
+    width: 160px;
    height: auto;
 `
 
@@ -75,6 +81,7 @@ export const NavbarExtendedContainer = styled.div `
     flex-direction: column;
     align-items: center;
     margin: 20px;
+    height: 50vh;
 
     @media (min-width: 700px) {
         display: none;
@@ -86,5 +93,11 @@ export const NavbarLinkExtend = styled(Link)`
     font-size: x-large;
     text-decoration: none;
     margin: 2%;
+    font-family: 'Montserrat', serif;
 
+    &:hover{
+        color:grey;
+        text-decoration:overline;
+        transform: translateY(-3px);
+    }
 `

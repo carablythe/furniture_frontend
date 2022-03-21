@@ -1,13 +1,13 @@
 import {useState} from 'react'
 import {
-    NavbarContainer, 
-    LeftContainer, 
-    RightContainer, 
-    NavbarInnerContainer, 
-    NavbarExtendedContainer, 
-    NavbarLinkContainer, 
-    NavbarLink, 
-    NavbarLogo, 
+    NavbarContainer,
+    LeftContainer,
+    RightContainer,
+    NavbarInnerContainer,
+    NavbarExtendedContainer,
+    NavbarLinkContainer,
+    NavbarLink,
+    NavbarLogo,
     NavbarHamburger,
     NavbarLinkExtend
 } from './Navbar.style.js'
@@ -28,9 +28,9 @@ const Navbar = () => {
                     </LeftContainer>
                     <RightContainer>
                         <NavbarLink to="/">Home</NavbarLink>
-                        <NavbarLink to="/">About</NavbarLink>
-                        <NavbarLink to="/">Products</NavbarLink>
-                        <NavbarLink to="/">Contact</NavbarLink>
+                        <NavbarLink to="/about">About</NavbarLink>
+                        <NavbarLink to="/products">Products</NavbarLink>
+                        <a className="main-contact" href="/#contact">Contact</a>
                         <NavbarLink to="/cart"><ion-icon name="cart-outline"></ion-icon></NavbarLink>
                         <NavbarHamburger onClick={() => {setExtendNav((curr) => !curr)}}> {extendNav ? <> &#10005; </> : <> &#8801; </>} </NavbarHamburger>
                     </RightContainer>
@@ -38,14 +38,14 @@ const Navbar = () => {
                 {extendNav ?
                 <NavbarExtendedContainer>
                         <NavbarLinkExtend to="/">Home</NavbarLinkExtend>
-                        <NavbarLinkExtend to="/">About</NavbarLinkExtend>
-                        <NavbarLinkExtend to="/">Products</NavbarLinkExtend>
-                        <NavbarLinkExtend to="/">Contact</NavbarLinkExtend>
+                        <NavbarLinkExtend to="/about">About</NavbarLinkExtend>
+                        <NavbarLinkExtend to="/products">Products</NavbarLinkExtend>
+                        <a className="mobile-contact" href="/#contact">Contact</a>
                         <NavbarLinkExtend to="/cart"><ion-icon name="cart-outline"></ion-icon></NavbarLinkExtend>
                 </NavbarExtendedContainer> : ''
                 }
             </NavbarContainer>
-            
+
         </>
     )
 }
