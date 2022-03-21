@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-// import ShowItem from './ShowItem'
 import axios from 'axios'
 import couch from '../images/2black-couch-2.jpg'
 import table from '../images/white-wood-table.jpg'
