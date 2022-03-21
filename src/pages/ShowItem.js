@@ -35,9 +35,12 @@ const ShowItem = (props) => {
         id: product.id,
         qty: product.quantity,
         price: product.price,
-        img: product.imgURL,
-        user: 1,
-        product: 1
+        orderQuantity: quantity,
+        quantity: product.quantity,
+        availability: product.availability,
+        color: product.color,
+        category: product.category,
+        name: product.name
       }
     })
     console.log(AddToCart())

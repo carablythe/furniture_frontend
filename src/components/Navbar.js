@@ -28,7 +28,7 @@ const Navbar = () => {
                     </LeftContainer>
                     <RightContainer>
                         <NavbarLink to="/">Home</NavbarLink>
-                        <NavbarLink to="/">About</NavbarLink>
+                        <NavbarLink to="/about">About</NavbarLink>
                         <NavbarLink to="/products">Products</NavbarLink>
                         <a className="main-contact" href="/#contact">Contact</a>
                         <NavbarLink to="/cart"><ion-icon name="cart-outline"></ion-icon></NavbarLink>
@@ -38,7 +38,7 @@ const Navbar = () => {
                 {extendNav ?
                 <NavbarExtendedContainer>
                         <NavbarLinkExtend to="/">Home</NavbarLinkExtend>
-                        <NavbarLinkExtend to="/">About</NavbarLinkExtend>
+                        <NavbarLinkExtend to="/about">About</NavbarLinkExtend>
                         <NavbarLinkExtend to="/products">Products</NavbarLinkExtend>
                         <a className="mobile-contact" href="/#contact">Contact</a>
                         <NavbarLinkExtend to="/cart"><ion-icon name="cart-outline"></ion-icon></NavbarLinkExtend>

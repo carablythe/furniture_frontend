@@ -33,7 +33,7 @@ const AddToCart = (product) => {
         img: null,
         imgURL: product.imgURL,
         price: product.price,
-        orderQuantity: product.orderQuantity,
+        orderQuantity: 1,
         quantity: product.quantity,
         availability: product.availability,
         color: product.color,
@@ -47,7 +47,7 @@ const AddToCart = (product) => {
 
 useEffect(()=>{
     getTrendingFurniture()
-})
+}, [])
 
     return(
  <>

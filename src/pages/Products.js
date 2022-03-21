@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-// import ShowItem from './ShowItem'
 import axios from 'axios'
 import couch from '../images/2black-couch-2.jpg'
 import table from '../images/white-wood-table.jpg'
@@ -92,9 +91,13 @@ const Products = (props) => {
         id: product.id,
         qty: 1,
         price: product.price,
-        img: product.imgURL,
-        user: 1,
-        product: 1
+        orderQuantity: 1,
+        quantity: product.quantity,
+        availability: product.availability,
+        color: product.color,
+        category: product.category,
+        name: product.name
+
       }
     })
     console.log(AddToCart())

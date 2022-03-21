@@ -9,6 +9,7 @@ import Cart from './pages/Cart'
 import LoginPage from './pages/Login'
 import Add from './components/Add'
 import Edit from './components/Edit'
+import About from './pages/About'
 
 const App = () => {
 
@@ -19,6 +20,7 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage/>}/>
+        <Route path="/about" element={<About/>}/>
         <Route path="/products" element={<Products/>}/>
         <Route path="/cart" element={<Cart/>} />
         <Route path="/admin" />
