@@ -18,9 +18,10 @@ const Add = (props) => {
     <>
       <h3>Please tell us what you think of this product!</h3>
       <form onSubmit = {handleSubmit}>
-        <label htmlFor="product">Product ID: </label>
-        <input type="number" name="product" min="1" max="99"
-        defaultValue= {props.id} onChange={handleChange}/>
+        <label htmlFor="product">Please type Product ID  <u> {props.id} </u> : </label>
+        <input type="number" name="product"
+        min="0" max="99"
+        placeholder ={props.id} onChange={handleChange}/>
         <br />
         <br />
         <label htmlFor="rating">Rating(0 - 5 : 0 lowest, 5 highest): </label>
