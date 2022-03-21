@@ -47,7 +47,7 @@ const AddToCart = (product) => {
 
 useEffect(()=>{
     getTrendingFurniture()
-})
+}, [])
 
     return(
  <>
