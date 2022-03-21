@@ -16,14 +16,12 @@ const ShowItem = (props) => {
 
  const { id } = useParams()
 
-
  const getProduct = () => {
      axios.get(`https://cozy-django.herokuapp.com/api/furnitures/${id}`).then(
        (response) => setProduct(response.data),
        (error) => console.error(error))
        .catch((error) => console.error(error))
    }
-
 
 
    const AddToCart = (product) => {
@@ -40,7 +38,8 @@ const ShowItem = (props) => {
         availability: product.availability,
         color: product.color,
         category: product.category,
-        name: product.name
+        name: product.name,
+        imgURL: product.imgURL,
       }
     })
     console.log(AddToCart())

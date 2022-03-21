@@ -96,8 +96,8 @@ const Products = (props) => {
         availability: product.availability,
         color: product.color,
         category: product.category,
-        name: product.name
-
+        name: product.name,
+        imgURL: product.imgURL,
       }
     })
     console.log(AddToCart())

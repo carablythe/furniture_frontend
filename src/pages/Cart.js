@@ -1,14 +1,18 @@
 import React from 'react';
 import axios from 'axios'
 import {useState, useEffect} from 'react'
+import { useParams } from 'react-router';
 import {Check, Exclamation, Plus, Dash, CartX, ArrowRight} from 'react-bootstrap-icons'
 import {Link} from 'react-router-dom'
+import CheckoutPopup from '../components/CheckoutPopup'
+
 
 const Cart = (props) => {
-    const [cartItems, setCartItems] = useState([]);
+    const [cartItems, setCartItems] = useState([]); useParams()
     const [products, setProducts] = useState([]);
-    const [quantity, setQuantity] = useState(1)
-
+    const [quantity, setQuantity] = useState(1); useParams()
+    const [showEdit, setShowEdit] = useState([]);
+    const [buttonPopup, setButtonPopup] = useState(false);
 
 
     const getCartItems = () => {
@@ -26,6 +30,7 @@ const Cart = (props) => {
       return sum
       }
 
+
    const deleteProduct = (product) => {
     axios.delete(`https://cozy-django.herokuapp.com/api/carts/${product.id}`).then(
     ()=>{ axios.get('https://cozy-django.herokuapp.com/api/carts').then((response)=> {
@@ -34,18 +39,7 @@ const Cart = (props) => {
     )
    }
 
-   const Checkout = (event) => {
-    axios.delete(`https://cozy-django.herokuapp.com/api/carts/`).then(
-    ()=>{ axios.get('https://cozy-django.herokuapp.com/api/carts').then((response)=> {
-      setCartItems(response.data)
-    })}
-    )
-   }
 
-
-    useEffect(() => {
-       getCartItems()
-    }, [])
 
     const handleIncrement = (order_quantity) => {
       setCartItems(cartItems =>
@@ -55,6 +49,7 @@ const Cart = (props) => {
       )
 
     }
+
     const handleDecrement = (order_quantity) => {
       setCartItems(cartItems =>
         cartItems.map((product)=>
@@ -62,6 +57,25 @@ const Cart = (props) => {
         )
         )
     }
+
+
+    const Checkout = (event) => {axios.delete(`https://cozy-django.herokuapp.com/api/carts`).then(
+    ()=>{ axios.get('https://cozy-django.herokuapp.com/api/carts').then((response)=> {
+       setCartItems(response.data)
+     })}
+     )
+    }
+
+    const ClearCart = () => {
+      setCartItems([])
+    }
+
+
+
+  useEffect(() => {
+  getCartItems()
+  }, [])
+
 
   return (
     <>
@@ -101,7 +115,14 @@ const Cart = (props) => {
                       <p className='price'><b>${product.price}</b></p>
                       </div>
                       <div id='button-container'>
-                      <button>Edit</button>
+                      <button onClick={()=>setShowEdit(!showEdit) }>Edit</button>
+                      { !showEdit ? (
+                       <>
+                       <br/>
+                      <div>Please click + or - to adjust the quantity you would like to purchase.</div>
+                      </>
+                      ): null
+                     }
                       <button onClick={(event)=>{deleteProduct(product)}}>Remove</button>
                       </div>
                   </div>
@@ -118,7 +139,13 @@ const Cart = (props) => {
                         <p className='total'>Total ${Total()}</p>
                       </div>
                       <p>By placing this order you agree to the Delivery Terms</p>
-                          <button onClick={() => setCartItems(0)}className='checkout'>Checkout <ArrowRight/></button>
+                          <button className='checkout' onClick={() => {
+                            setButtonPopup(true)
+                          }} >Checkout <ArrowRight/></button>
+                          <CheckoutPopup trigger={buttonPopup} setTrigger= {setButtonPopup}>
+                              <h3>Thank you for your order! </h3> <h5>Please check your inbox for the order confirmation and delivery details. We hope you enjoy your purchase!</h5>
+                          </CheckoutPopup>
+
                   </div>
      </div>
      }
@@ -127,6 +154,9 @@ const Cart = (props) => {
 
 }
 export default Cart
+//
+// // took out temporarily from under checkout button:
+
 
 
 
