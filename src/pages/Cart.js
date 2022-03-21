@@ -146,6 +146,8 @@ const Cart = (props) => {
                               <h3>Thank you for your order! </h3> <h5>Please check your inbox for the order confirmation and delivery details. We hope you enjoy your purchase!</h5>
                           </CheckoutPopup>
 
+
+
                   </div>
      </div>
      }
