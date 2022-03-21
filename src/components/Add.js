@@ -20,7 +20,7 @@ const Add = (props) => {
       <form onSubmit = {handleSubmit}>
         <label htmlFor="product">Product ID: </label>
         <input type="number" name="product" min="1" max="99"
-        value= {props.id} onChange={handleChange}/>
+        defaultValue= {props.id} onChange={handleChange}/>
         <br />
         <br />
         <label htmlFor="rating">Rating(0 - 5 : 0 lowest, 5 highest): </label>

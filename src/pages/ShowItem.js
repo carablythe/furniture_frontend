@@ -10,6 +10,7 @@ import Edit from '../components/Edit'
 const ShowItem = (props) => {
   const [product, setProduct] = useState([]);
   const [quantity, setQuantity] = useState(0)
+  const [newStock, updateStock] = useState(0)
   const [reviews, setReviews] = useState([])
   const [review, setReview] = useState([])
   // const [newRating, setNewRating] = useState('');
@@ -55,6 +56,27 @@ const ShowItem = (props) => {
      console.log(quantity);
      }
 
+
+  const handleNewStockChange = (event) => {
+  updateStock(event.target.value)
+  }
+
+
+const handleUpdateStock = (product) => {
+      axios
+         .put(`https://cozy-django.herokuapp.com/api/furnitures/${id}`,
+                {
+                  quantity: product.quantity - product.orderQuantity
+                    }
+               ).then(()=> {
+                      axios
+                          .get('https://cozy-django.herokuapp.com/api/furnitures')
+                            .then((response) => {
+                              setProduct(response.data);
+                          })
+                        })
+                    }
+
    const getReviews = () => {
      axios.get('https://cozy-django.herokuapp.com/api/reviews').then(
        (response) => setReviews(response.data),
@@ -71,6 +93,7 @@ const ShowItem = (props) => {
     })
    }
 
+
    const handleUpdate = (editReview) => {
        console.log(editReview)
                axios
@@ -83,6 +106,7 @@ const ShowItem = (props) => {
                    ))
            }   )
      }
+
 
    const handleDelete = (event, deletedReview) => {
    axios
@@ -102,8 +126,6 @@ const ShowItem = (props) => {
   useEffect(() => {
     getReviews()
   }, [])
-
-
 
 
   return (
@@ -129,7 +151,9 @@ const ShowItem = (props) => {
                 <button onClick={handleDecrement}><Dash/></button>
                 </div>
                  <p className='price'><b>${product.price}</b></p>
-               <button id="add-cart" onClick={()=> AddToCart(product)}> Add to Cart</button>
+               <button id="add-cart" onClick={()=> { AddToCart(product);
+               handleUpdateStock(product)
+               }}> Add to Cart</button>
               </div>
             </div>
              </div>
