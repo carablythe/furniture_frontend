@@ -25,8 +25,8 @@ const ShowItem = (props) => {
    }
 
 
-   const AddToCart = (product) => {
-    axios({
+   const AddToCart = (product) => { if (quantity >=1)
+    {axios({
       method: 'post',
       url: '/api/carts',
       baseURL: 'https://cozy-django.herokuapp.com',
@@ -42,7 +42,7 @@ const ShowItem = (props) => {
         name: product.name,
         imgURL: product.imgURL,
       }
-    })
+    })}
     console.log(AddToCart())
    }
 
@@ -51,8 +51,8 @@ const ShowItem = (props) => {
      console.log(quantity);
      }
 
-    const handleDecrement = (event) => {
-     setQuantity(quantity - 1)
+    const handleDecrement = (event) => { if  (quantity >=1)
+     (setQuantity(quantity - 1));
      console.log(quantity);
      }
 
@@ -147,7 +147,7 @@ const handleUpdateStock = (product) => {
                </p>
               <div className='quantity'>
                 <button onClick={handleIncrement}><Plus/></button>
-              <div>{product.quantity > 0 ? quantity : ''} </div>
+              <div >{product.quantity= 1 || product.quantity > 1 ? quantity : ''} </div>
                 <button onClick={handleDecrement}><Dash/></button>
                 </div>
                  <p className='price'><b>${product.price}</b></p>
