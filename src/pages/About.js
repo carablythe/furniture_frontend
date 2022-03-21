@@ -9,7 +9,7 @@ const About = () =>{
         <>
         <h1 className='trending-title about-title'><span>About Cozy Furniture</span></h1>
         <div className='about-container'>
-            <div className='info-container'>
+            <div className='info-container' id='about-info'>
             <p>Cozy Furniture was established in 2022 by three remarkable women. It is an ecommerce furniture 
                 platform that sells custom made furniture to separate from the rest. Designs are created witht the 
                 people in mind. The goal is to create unique designs per customer reccommendation. Everyday 
@@ -32,8 +32,8 @@ const About = () =>{
                     <img src="https://i.imgur.com/Ug6Byng.jpg"/>
                 </div>
                 <div className='links'>
-                    <a href=''><Linkedin /></a>
-                     <a href=''><Github /></a>
+                    <a target="_blank" href='https://www.linkedin.com/in/victoria-qn-le/'><Linkedin /></a>
+                     <a target="_blank" href='https://github.com/Victoria-Q-Le'><Github /></a>
                 </div>
             </div>    
             <div className='creator-container'>
@@ -41,8 +41,8 @@ const About = () =>{
                     <img src="https://i.imgur.com/0yxREnc.png"/>
                 </div>
                 <div className='links'>
-                    <a href=''><Linkedin /></a>
-                     <a href=''><Github /></a>
+                    <a target="_blank" href='https://www.linkedin.com/in/carablythephillips/'><Linkedin /></a>
+                     <a target="_blank" href='https://github.com/carablythe'><Github /></a>
                 </div>
             </div>    
             <div className='creator-container'>
@@ -50,8 +50,8 @@ const About = () =>{
                     <img src="https://i.imgur.com/NOLOZYc.jpg"/>
                 </div>
                 <div className='links'>
-                    <a href=''><Linkedin /></a>
-                     <a href=''><Github /></a>
+                    <a target="_blank" href='https://www.linkedin.com/in/heather-mielke/'><Linkedin /></a>
+                     <a target="_blank" href='https://github.com/Heather-Mielke'><Github /></a>
                 </div>
             </div>    
         </div>
