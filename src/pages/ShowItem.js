@@ -16,6 +16,7 @@ const ShowItem = (props) => {
 
  const { id } = useParams()
 
+
  const getProduct = () => {
      axios.get(`https://cozy-django.herokuapp.com/api/furnitures/${id}`).then(
        (response) => setProduct(response.data),
@@ -23,37 +24,34 @@ const ShowItem = (props) => {
        .catch((error) => console.error(error))
    }
 
+
+
    const AddToCart = (product) => {
     axios({
       method: 'post',
       url: '/api/carts',
       baseURL: 'https://cozy-django.herokuapp.com',
       data: {
-        user: null,
-        img: null,
-        imgURL: product.imgURL,
+        id: product.id,
+        qty: product.quantity,
         price: product.price,
-        orderQuantity: product.orderQuantity,
-        quantity: product.quantity,
-        availability: product.availability,
-        color: product.color,
-        category: product.category,
-        name: product.name
+        img: product.imgURL,
+        user: 1,
+        product: 1
       }
     })
     console.log(AddToCart())
    }
 
-  const handleIncrement = (event) => {
-    setQuantity(quantity + 1)
-    console.log(quantity);
-    }
+   const handleIncrement = (event) => {
+     setQuantity(quantity + 1)
+     console.log(quantity);
+     }
 
-   const handleDecrement = (event) => {
-    setQuantity(quantity - 1)
-    console.log(quantity);
-    }
-
+    const handleDecrement = (event) => {
+     setQuantity(quantity - 1)
+     console.log(quantity);
+     }
 
    const getReviews = () => {
      axios.get('https://cozy-django.herokuapp.com/api/reviews').then(
@@ -136,7 +134,7 @@ const ShowItem = (props) => {
                 <br/>
                   <br/>
                       <div className='reviews-container'>
-                      <h4 className='trending-title'><span>Customer Reviews :</span></h4>
+                      <h4>Customer Reviews of this Product:</h4>
                        <br/>
                        <div className = "reviews">
                         {reviews.filter((review) => {
@@ -147,9 +145,9 @@ const ShowItem = (props) => {
                           map((review) => {
                          return (
                           <div className = "review" key = {review.id}>
-                          <h5>Posted by Anonymous {review.user}: </h5>
-                          <h5><b>Rating:</b> {review.rating} /5</h5>
-                          <h5><b>Comment:</b> {review.comment} </h5>
+                          <h5>Posted by Anonymous User {review.user}: </h5>
+                          <h5>Rating: {review.rating} /5</h5>
+                          <h5>Comment: {review.comment} </h5>
                           <br/>
                           <Edit handleUpdate={handleUpdate} review = {review}/>
                           <br/>
@@ -162,7 +160,7 @@ const ShowItem = (props) => {
                               )
                          })}
                         <br/>
-                         <div><Add handleCreate = {handleCreate} id = {id}/></div>
+                         <div><Add handleCreate = {handleCreate} id = { id }/></div>
                       </div>
                       </div>
 
