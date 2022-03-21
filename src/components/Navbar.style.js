@@ -4,7 +4,7 @@ import {Link} from "react-router-dom"
 export const NavbarContainer = styled.nav `
     width: 100%;
     background: whitesmoke;
-    height: ${(props) => (props.extendNav ? "50vh" : "90px")};
+    height: ${(props) => (props.extendNav ? "55vh" : "90px")};
     display: flex;
     flex-direction: column;
 
@@ -81,7 +81,6 @@ export const NavbarExtendedContainer = styled.div `
     flex-direction: column;
     align-items: center;
     margin: 20px;
-    height: 50vh;
 
     @media (min-width: 700px) {
         display: none;

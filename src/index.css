@@ -347,6 +347,7 @@ footer{
   color: black;
   text-shadow: 0 3px 10px rgb(0 0 0 /.3);
   cursor: pointer;
+  font-family: 'Nanum Myeongjo', serif;
 }
 .main-container{
   display: flex;
@@ -820,7 +821,7 @@ b {
     padding: 1px 15px;
   }
   .overlay2 > h3{
-    font-size: 17px;
+    font-size: 16px;
   }
   .trending-container{
     display: flex;
@@ -837,8 +838,11 @@ b {
   .contents-main > p {
     font-size: 12px;
   }
-  .contents-main > .contents-title{
-    font-size: 15px;
+  .contents-main > a > .contents-title{
+    font-size: 13px;
+  }
+  .all {
+    margin: 5vh auto;
   }
  
 }
