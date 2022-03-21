@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios'
 import AddToCart from './Cart'
 import { useParams } from 'react-router';
-import { Link } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom'
 import {Check, Exclamation, Plus, Dash} from 'react-bootstrap-icons'
 import Add from '../components/Add'
 import Edit from '../components/Edit'

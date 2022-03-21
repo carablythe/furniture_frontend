@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios'
 import {useState, useEffect} from 'react'
 import { useParams } from 'react-router';
-import {Check, Exclamation, Plus, Dash, CartX, ArrowRight} from 'react-bootstrap-icons'
+import {Check, Exclamation, Plus, Dash, CartX, ArrowRight, Trash} from 'react-bootstrap-icons'
 import {Link} from 'react-router-dom'
 import CheckoutPopup from '../components/CheckoutPopup'
 
@@ -13,7 +13,6 @@ const Cart = (props) => {
     const [quantity, setQuantity] = useState(1); useParams()
     const [showEdit, setShowEdit] = useState([]);
     const [buttonPopup, setButtonPopup] = useState(false);
-
 
     const getCartItems = () => {
        axios.get('https://cozy-django.herokuapp.com/api/carts').then(
@@ -40,36 +39,45 @@ const Cart = (props) => {
    }
 
 
-
     const handleIncrement = (order_quantity) => {
       setCartItems(cartItems =>
         cartItems.map((product)=>
         order_quantity === product.name ? {...product, orderQuantity: product.orderQuantity + (product.orderQuantity < 10 ? 1:0 ) } : product
         )
       )
-
     }
 
-    const handleDecrement = (order_quantity) => {
+    const handleDecrement = (name) => {
       setCartItems(cartItems =>
         cartItems.map((product)=>
-        order_quantity === product.name ? {...product, orderQuantity: product.orderQuantity - (product.orderQuantity > 1  ? 1:0 ) } : product
+        name === product.name ? {...product, orderQuantity: product.orderQuantity - (product.orderQuantity > 1  ? 1:0 ) } : product
         )
-        )
+      )
     }
 
-
-    const Checkout = (event) => {axios.delete(`https://cozy-django.herokuapp.com/api/carts`).then(
-    ()=>{ axios.get('https://cozy-django.herokuapp.com/api/carts').then((response)=> {
-       setCartItems(response.data)
-     })}
-     )
-    }
 
     const ClearCart = () => {
-      setCartItems([])
+      for (let i = 0; i < cartItems.length; i++){
+        let name = cartItems[i].name
+        axios.put('https://cozy-django.herokuapp.com/api/carts/' + cartItems[i].id,
+        {
+          id: cartItems[i].id,
+          qty: cartItems[i].quantity,
+          price: cartItems[i].price,
+          orderQuantity: quantity,
+          quantity: cartItems[i].quantity - quantity,
+          availability: cartItems[i].availability,
+          color: cartItems[i].color,
+          category: cartItems[i].category,
+          name: cartItems[i].name,
+          imgURL: cartItems[i].imgURL,
+        }).then(
+        axios.get('https://cozy-django.herokuapp.com/api/carts').then((response)=> {
+          setCartItems(response.data)
+        })
+      )}
+     setButtonPopup(true)
     }
-
 
 
   useEffect(() => {
@@ -88,6 +96,9 @@ const Cart = (props) => {
         <div className='cart-empty'>
         <CartX/> Cart is Empty <CartX/>
         </div>
+        <CheckoutPopup trigger={buttonPopup} setTrigger= {setButtonPopup}>
+          <h3>Thank you for your order! </h3> <h5>Please check your inbox for the order confirmation and delivery details. We hope you enjoy your purchase!</h5>
+        </CheckoutPopup>
      </div>
     :
      <div className='cart-and-total'>
@@ -115,78 +126,32 @@ const Cart = (props) => {
                       <p className='price'><b>${product.price}</b></p>
                       </div>
                       <div id='button-container'>
-                      <button onClick={()=>setShowEdit(!showEdit) }>Edit</button>
-                      { !showEdit ? (
-                       <>
-                       <br/>
-                      <div>Please click + or - to adjust the quantity you would like to purchase.</div>
-                      </>
-                      ): null
-                     }
-                      <button onClick={(event)=>{deleteProduct(product)}}>Remove</button>
+                      <button onClick={(event)=>{deleteProduct(product)}}>Remove<Trash /></button>
                       </div>
                   </div>
-               </div>
+              </div>
         </div>
      )})}
      </div>
       <div className='checkout-summary'>
-                      <h3>Order Summary:</h3>
-                      <div className="order-details">
-                        <p> {cartItems.length} {cartItems.length > 1 ? "PRODUCTS" : 'PRODUCT'}</p>
-                        <p>Product total ${Total()}</p>
-                        <p>Delivery FREE</p>
-                        <p className='total'>Total ${Total()}</p>
-                      </div>
-                      <p>By placing this order you agree to the Delivery Terms</p>
-                          <button className='checkout' onClick={() => {
-                            setButtonPopup(true)
-                          }} >Checkout <ArrowRight/></button>
-                          <CheckoutPopup trigger={buttonPopup} setTrigger= {setButtonPopup}>
-                              <h3>Thank you for your order! </h3> <h5>Please check your inbox for the order confirmation and delivery details. We hope you enjoy your purchase!</h5>
-                          </CheckoutPopup>
-
-                  </div>
+            <h3>Order Summary:</h3>
+            <div className="order-details">
+              <p> {cartItems.length} {cartItems.length > 1 ? "PRODUCTS" : 'PRODUCT'}</p>
+              <p>Product total ${Total()}</p>
+              <p>Delivery FREE</p>
+              <p className='total'>Total ${Total()}</p>
+            </div>
+            <p>By placing this order you agree to the Delivery Terms</p>
+            <button className='checkout' onClick={() => {
+                ClearCart() ; setCartItems([])
+             }}  >Checkout <ArrowRight/></button>
+            <CheckoutPopup trigger={buttonPopup} setTrigger= {setButtonPopup}>
+              <h3>Thank you for your order! </h3> <h5>Please check your inbox for the order confirmation and delivery details. We hope you enjoy your purchase!</h5>
+            </CheckoutPopup>
+       </div>
      </div>
      }
    </>
   )
-
 }
 export default Cart
-//
-// // took out temporarily from under checkout button:
-
-
-
-
-// unused code:
-// const getCartProducts = (cart) => {
-//     axios.post('https://furnituredjango.herokuapp.com/api/furnitures', {cart}).then(
-//       (response => response.data))
-//  }
-
-
-// const AddToCart = (product) => {
-//     const exist = cartItems.find((x) => x.id === product.id);
-//       if(exist) {
-//           setCartItems(
-//              cartItems.map((x) => x.id === product.id ? {...exist, qty: exist.qty + 1} : x)
-//              );
-//       } else {
-//             setCartItems([...cartItems,{...product, qty: 1}])
-//             }
-//       }
-
-// const RemoveFromCart = (product) => {
-//     const exist = cartItems.find((x) => x.id === product.id);
-//         if(exist.qty === 1) {
-//             setCartItems(
-//               cartItems.filter((x) => x.id !== product.id));
-//         } else {
-//             setCartItems(
-//               cartItems.map((x) => x.id === product.id ? {...exist, qty: exist.qty - 1} : x)
-//             )}
-//       }
-
-// const TotalPrice = cartItems.reduce((a,c,) => a + c.price * c.qty, 0)
