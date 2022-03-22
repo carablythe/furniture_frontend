@@ -9,7 +9,7 @@ const Cart = (props) => {
     const [products, setProducts] = useState([]);
     const [quantity, setQuantity] = useState(1)
 
-  
+
 
     const getCartItems = () => {
        axios.get('https://cozy-django.herokuapp.com/api/carts').then(
@@ -18,7 +18,7 @@ const Cart = (props) => {
          .catch((error) => console.error(error))
      }
 
-    
+
 
     const Total = (sum) => {
       sum = 0;
@@ -26,7 +26,7 @@ const Cart = (props) => {
       sum += cartItems[i].price * cartItems[i].orderQuantity
       return sum
       }
-    
+
    const deleteProduct = (product) => {
     axios.delete(`https://cozy-django.herokuapp.com/api/carts/${product.id}`).then(
     ()=>{ axios.get('https://cozy-django.herokuapp.com/api/carts').then((response)=> {
@@ -34,7 +34,7 @@ const Cart = (props) => {
     })}
     )
    }
-   
+
    const Checkout = (event) => {
     axios.delete(`https://cozy-django.herokuapp.com/api/carts/`).then(
     ()=>{ axios.get('https://cozy-django.herokuapp.com/api/carts').then((response)=> {
@@ -55,7 +55,7 @@ const Cart = (props) => {
         order_quantity === product.name ? {...product, orderQuantity: product.orderQuantity + (product.orderQuantity < 10 ? 1:0 ) } : product
         )
       )
-      
+
     }
     const handleDecrement = (order_quantity) => {
       setCartItems(cartItems =>
@@ -91,7 +91,7 @@ const Cart = (props) => {
                       <p href={product._id} className='contents-title'>{product.name}</p>
                       <p>Color: {product.color}</p>
                       <p>Store Quantity: {product.quantity}</p>
-                      <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'} 
+                      <p className='stock'> {product.availability ? 'In Stock'  : 'Out of Stock'}
                       {product.availability ? <Check /> : <Exclamation/>}
                       </p>
                       <div className='quantity'>

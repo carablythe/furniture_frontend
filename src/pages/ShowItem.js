@@ -33,7 +33,7 @@ const ShowItem = (props) => {
         img: null,
         imgURL: product.imgURL,
         price: product.price,
-        orderQuantity: product.orderQuantity,
+        orderQuantity: setQuantity(),
         quantity: product.quantity,
         availability: product.availability,
         color: product.color,
