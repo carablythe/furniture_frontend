@@ -94,6 +94,14 @@ const Cart = (props) => {
       )
     }
 
+    const Products = () => {
+      let sum = 0
+      for(let i = 0; i < cartItems.length; i++){
+        sum += cartItems[i].orderQuantity 
+      }
+      return sum
+    }
+
 
     const ClearCart = () => {
       for (let i = 0; i < cartItems.length; i++){
@@ -175,7 +183,7 @@ const Cart = (props) => {
       <div className='checkout-summary'>
             <h3>Order Summary:</h3>
             <div className="order-details">
-              <p> {cartItems.length} {cartItems.length > 1 ? "PRODUCTS" : 'PRODUCT'}</p>
+              <p> {Products()} {cartItems.length > 1 ? "PRODUCTS" : 'PRODUCT'}</p>
               <p>Product total ${Total()}</p>
               <p>Delivery FREE</p>
               <p className='total'>Total ${Total()}</p>
