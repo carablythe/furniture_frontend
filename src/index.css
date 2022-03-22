@@ -459,6 +459,9 @@ button:hover{
   display: flex;
   align-items: center;
 }
+.cart-heading > .cart-title {
+  font-family: 'Nanum Myeongjo', serif;
+}
 .container3 {
   width: 100%;
   display: flex;
