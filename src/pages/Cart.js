@@ -38,20 +38,59 @@ const Cart = (props) => {
     )
    }
 
+  const addOrderQuantity = () => {
+    for (let i = 0; i < cartItems.length; i++){
+      axios.put('https://cozy-django.herokuapp.com/api/carts/' + cartItems[i].id,
+      {
+        id: cartItems[i].id,
+        price: cartItems[i].price,
+        orderQuantity: cartItems[i].orderQuantity + 1,
+        quantity: cartItems[i].quantity,
+        availability: cartItems[i].availability,
+        color: cartItems[i].color,
+        category: cartItems[i].category,
+        name: cartItems[i].name,
+        imgURL: cartItems[i].imgURL,
+      }).then(
+      axios.get('https://cozy-django.herokuapp.com/api/carts').then((response)=> {
+        setCartItems(response.data)
+      })
+    )}
+  }
+  const subOrderQuantity = () => {
+    for (let i = 0; i < cartItems.length; i++){
+    
+      axios.put('https://cozy-django.herokuapp.com/api/carts/' + cartItems[i].id,
+      {
+        id: cartItems[i].id,
+        price: cartItems[i].price,
+        orderQuantity: cartItems[i].orderQuantity - 1,
+        quantity: cartItems[i].quantity,
+        availability: cartItems[i].availability,
+        color: cartItems[i].color,
+        category: cartItems[i].category,
+        name: cartItems[i].name,
+        imgURL: cartItems[i].imgURL,
+      }).then(
+      axios.get('https://cozy-django.herokuapp.com/api/carts').then((response)=> {
+        setCartItems(response.data)
+      })
+    )}
+  }
 
-    const handleIncrement = (order_quantity) => {
+    const handleIncrement = (name) => {
       setCartItems(cartItems =>
         cartItems.map((product)=>
-        order_quantity === product.name ? {...product, orderQuantity: product.orderQuantity + (product.orderQuantity < 10 ? 1:0 ) } : product
-        )
+        name === product.name ? {...product, orderQuantity: product.orderQuantity + 
+          (product.orderQuantity < 10 ? 1:0 )} : product)
       )
     }
 
     const handleDecrement = (name) => {
       setCartItems(cartItems =>
         cartItems.map((product)=>
-        name === product.name ? {...product, orderQuantity: product.orderQuantity - (product.orderQuantity > 1  ? 1:0 ) } : product
-        )
+        name === product.name ? {...product, orderQuantity: product.orderQuantity - 
+          (product.orderQuantity > 1  ? 1:0 ) } : product)
       )
     }
 
