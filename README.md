@@ -1,4 +1,11 @@
 # Cozy Furniture Store
+
+<div id="header" align="center">
+
+  <img src="https://carasensei.com/images/CozyFurniture.png" width="800" height="400">
+
+</div>
+
 Full-stack E-commerce app
 by Heather Mielke, Victoria Le, and Cara Phillips
 
