@@ -4,7 +4,7 @@
 
 <div id="header" align="center">
 
-  <img src="https://carasensei.com/images/CozyFurniture.png" width="800" height="400">
+  <img src="https://carasensei.com/images/CozyFurniture2.png" width="800" height="400">
 
 </div>
 
